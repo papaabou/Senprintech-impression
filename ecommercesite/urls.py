@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.static import serve
 from django.urls import include, path, re_path
 from ecommercesite.admin_dashboard import install_admin_dashboard
 from ecommercesite import views
@@ -46,6 +45,6 @@ if settings.DEBUG:
 
 if settings.SERVE_MEDIA_FILES:
     urlpatterns += [
-        re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
+        re_path(r"^media/(?P<path>.*)$", views.media_file),
     ]
 
