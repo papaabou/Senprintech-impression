@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, ProductOption, ProductOptionChoice
+from .models import Category, ContactRequest, Product, ProductOption, ProductOptionChoice
 
 
 class ProductOptionChoiceInline(admin.TabularInline):
@@ -32,3 +32,11 @@ class ProductOptionAdmin(admin.ModelAdmin):
     list_filter = ["input_type", "required", "product__category"]
     search_fields = ["name", "code", "product__name"]
     inlines = [ProductOptionChoiceInline]
+
+
+@admin.register(ContactRequest)
+class ContactRequestAdmin(admin.ModelAdmin):
+    list_display = ["name", "email", "phone", "project_type", "email_sent", "created_at"]
+    list_filter = ["project_type", "email_sent", "created_at"]
+    search_fields = ["name", "email", "phone", "message"]
+    readonly_fields = ["created_at"]

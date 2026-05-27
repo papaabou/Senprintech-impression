@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from products.models import Category, Product, ProductOption, ProductOptionChoice
+from products.models import DEFAULT_PRODUCT_PRICES, Category, Product, ProductOption, ProductOptionChoice
 
 
 class Command(BaseCommand):
@@ -27,7 +27,7 @@ class Command(BaseCommand):
                 "name": "Cartes de visite",
                 "slug": "cartes-de-visite",
                 "description": "Cartes professionnelles sur papier premium.",
-                "price": 5000,
+                "price": DEFAULT_PRODUCT_PRICES["cartes-de-visite"],
                 "image": "products/business-cards-hd.png",
             },
             {
@@ -35,7 +35,7 @@ class Command(BaseCommand):
                 "name": "Flyers",
                 "slug": "flyers",
                 "description": "Flyers A5, A4 ou A3 pour vos campagnes.",
-                "price": 8000,
+                "price": DEFAULT_PRODUCT_PRICES["flyers"],
                 "image": "products/flyers-hd.png",
             },
             {
@@ -43,7 +43,7 @@ class Command(BaseCommand):
                 "name": "Roll-up",
                 "slug": "roll-up",
                 "description": "Supports salons, boutiques et evenements.",
-                "price": 25000,
+                "price": DEFAULT_PRODUCT_PRICES["roll-up"],
                 "image": "products/rollup.jpg",
             },
             {
@@ -51,7 +51,7 @@ class Command(BaseCommand):
                 "name": "T-shirts personnalises",
                 "slug": "t-shirts-personnalises",
                 "description": "Impression textile pour equipes et marques.",
-                "price": 10000,
+                "price": DEFAULT_PRODUCT_PRICES["t-shirts-personnalises"],
                 "image": "products/tshirts-hd.png",
             },
             {
@@ -59,7 +59,7 @@ class Command(BaseCommand):
                 "name": "Mugs personnalises",
                 "slug": "mugs-personnalises",
                 "description": "Mugs imprimes pour cadeaux et bureaux.",
-                "price": 7000,
+                "price": DEFAULT_PRODUCT_PRICES["mugs-personnalises"],
                 "image": "products/mugs-hd.png",
             },
             {
@@ -67,7 +67,7 @@ class Command(BaseCommand):
                 "name": "Stickers",
                 "slug": "stickers",
                 "description": "Stickers branding, packaging et evenements.",
-                "price": 3000,
+                "price": DEFAULT_PRODUCT_PRICES["stickers"],
                 "image": "products/stickers-hd.png",
             },
             {
@@ -75,7 +75,7 @@ class Command(BaseCommand):
                 "name": "Brochures & Depliants",
                 "slug": "brochures-depliants",
                 "description": "Supports plies pour presenter vos offres.",
-                "price": 12000,
+                "price": DEFAULT_PRODUCT_PRICES["brochures-depliants"],
                 "image": "products/brochures-hd.png",
             },
             {
@@ -83,7 +83,7 @@ class Command(BaseCommand):
                 "name": "Enveloppes & Papier entete",
                 "slug": "enveloppes-papier-entete",
                 "description": "Papeterie professionnelle pour votre marque.",
-                "price": 6000,
+                "price": DEFAULT_PRODUCT_PRICES["enveloppes-papier-entete"],
                 "image": "products/enveloppe.jpg",
             },
         ]

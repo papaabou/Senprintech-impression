@@ -1,13 +1,20 @@
-from django.contrib import messages
-from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
-from django.db.models import Case, IntegerField, Value, When
-from django.shortcuts import render, get_object_or_404, redirect
-from django.template.loader import render_to_string
+import logging
 from urllib.parse import quote
 
+from django.conf import settings
+from django.contrib import messages
+from django.core.mail import EmailMultiAlternatives
+from django.db.models import Case, IntegerField, Value, When
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
+from django.urls import reverse
+
 from .forms import ContactForm, ProductConfigurationForm
-from .models import Category, Product
+from .models import Category, ContactRequest, Product
+
+
+logger = logging.getLogger(__name__)
 
 
 def get_catalog_context(category_slug=None, contact_form=None):
@@ -115,18 +122,24 @@ def contact_submit(request):
 
     form = ContactForm(request.POST)
     if form.is_valid():
+        contact_request = ContactRequest.objects.create(**form.cleaned_data)
         try:
             send_contact_emails(form)
+            contact_request.email_sent = True
+            contact_request.save(update_fields=["email_sent"])
             messages.success(
                 request,
                 "Votre message a bien été envoyé. Un email de confirmation vous a été adressé.",
             )
-        except Exception:
+        except Exception as exc:
+            logger.exception("Unable to send contact email for contact_request_id=%s", contact_request.id)
+            contact_request.email_error = str(exc)
+            contact_request.save(update_fields=["email_error"])
             messages.warning(
                 request,
                 "Votre message est bien reçu, mais l'email automatique n'a pas pu être envoyé pour le moment.",
             )
-        return redirect("products:product_list")
+        return HttpResponseRedirect(f"{reverse('products:product_list')}#contact")
 
     messages.error(request, "Veuillez corriger les champs du formulaire de contact.")
     return render(request, "products/product/list.html", get_catalog_context(contact_form=form))

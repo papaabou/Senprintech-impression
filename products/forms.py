@@ -1,3 +1,5 @@
+from decimal import Decimal
+
 from django import forms
 
 from .models import ProductOptionChoice
@@ -131,7 +133,7 @@ class ProductConfigurationForm(forms.Form):
         return selected_options
 
     def get_configured_price(self):
-        total = self.product.price
+        total = Decimal(str(self.product.get_base_price()))
         for selected in self.get_selected_options():
             total += ProductOptionChoice.objects.filter(
                 id=selected.get("choice_id")

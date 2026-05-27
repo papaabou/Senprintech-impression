@@ -2,6 +2,18 @@ from django.db import models
 from django.urls import reverse
 
 
+DEFAULT_PRODUCT_PRICES = {
+    "cartes-de-visite": 5000,
+    "flyers": 8000,
+    "roll-up": 25000,
+    "t-shirts-personnalises": 10000,
+    "mugs-personnalises": 7000,
+    "stickers": 3000,
+    "brochures-depliants": 12000,
+    "enveloppes-papier-entete": 6000,
+}
+
+
 class Category(models.Model):
     name = models.CharField(max_length=250)
     slug = models.SlugField(unique=True)
@@ -29,6 +41,11 @@ class Product(models.Model):
     
     def get_absolute_url(self):
         return reverse('products:product_detail', kwargs={'id':self.id, 'slug':self.slug})
+
+    def get_base_price(self):
+        if self.price and self.price > 0:
+            return self.price
+        return DEFAULT_PRODUCT_PRICES.get(self.slug, 0)
 
 
 class ProductOption(models.Model):
@@ -70,3 +87,22 @@ class ProductOptionChoice(models.Model):
 
     def __str__(self):
         return f"{self.option.name}: {self.label}"
+
+
+class ContactRequest(models.Model):
+    name = models.CharField(max_length=120)
+    email = models.EmailField()
+    phone = models.CharField(max_length=40, blank=True)
+    project_type = models.CharField(max_length=40)
+    message = models.TextField()
+    email_sent = models.BooleanField(default=False)
+    email_error = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+        verbose_name = "demande contact"
+        verbose_name_plural = "demandes contact"
+
+    def __str__(self):
+        return f"{self.name} - {self.email}"

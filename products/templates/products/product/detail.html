@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load l10n %}
 
 {%block title%}{{product.name}}{%endblock%}
 
@@ -15,9 +16,9 @@
     <p class="eyebrow">{{product.category.name}}</p>
     <h1>{{product.name}}</h1>
     <p class="detail-description">{{product.description}}</p>
-    <p class="detail-price"><span id="configured-price">{{product.price}}</span> FCFA</p>
+    <p class="detail-price">À partir de <span id="configured-price">{{ product.get_base_price|floatformat:0 }}</span> FCFA</p>
 
-    <form action="{%url 'cart:cart_add' product.id%}" method="post" id="add-to-cart-form" class="detail-form" enctype="multipart/form-data" data-base-price="{{product.price}}">
+    <form action="{%url 'cart:cart_add' product.id%}" method="post" id="add-to-cart-form" class="detail-form" enctype="multipart/form-data" data-base-price="{{ product.get_base_price|unlocalize }}">
         {% csrf_token %}
         {% if product.options.exists %}
         <div class="option-panel">
@@ -33,7 +34,7 @@
                     {% if option.input_type == "select" %}
                     <select name="option_{{ option.id }}" {% if option.required %}required{% endif %}>
                         {% for choice in option.choices.all %}
-                        <option value="{{ choice.id }}" data-price-delta="{{ choice.price_delta }}">{{ choice.label }}{% if choice.price_delta %} (+{{ choice.price_delta }} FCFA){% endif %}</option>
+                        <option value="{{ choice.id }}" data-price-delta="{{ choice.price_delta|unlocalize }}">{{ choice.label }}{% if choice.price_delta %} (+{{ choice.price_delta|floatformat:0 }} FCFA){% endif %}</option>
                         {% endfor %}
                     </select>
                     {% elif option.input_type == "file" %}
@@ -49,7 +50,7 @@
                     <p class="preview-label">Resume des choix</p>
                     <ul id="option-summary"></ul>
                 </div>
-                <strong><span id="preview-price">{{product.price}}</span> FCFA</strong>
+                <strong><span id="preview-price">{{ product.get_base_price|floatformat:0 }}</span> FCFA</strong>
             </div>
         </div>
         {% endif %}
@@ -61,7 +62,7 @@
             </label>
             <div class="line-total-preview">
                 <span>Total ligne estime</span>
-                <strong><span id="line-total">{{product.price}}</span> FCFA</strong>
+                <strong><span id="line-total">{{ product.get_base_price|floatformat:0 }}</span> FCFA</strong>
             </div>
         </div>
         <button type="submit" class="button button-primary checkout-main-cta">Ajouter au panier</button>

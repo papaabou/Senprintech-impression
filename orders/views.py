@@ -47,7 +47,7 @@ def order_create(request):
                 OrderItem.objects.create(
                     order=order,
                     product=item.product,
-                    price=item.configured_price or item.product.price,
+                    price=item.configured_price or item.product.get_base_price(),
                     quantity=item.quantity,
                     selected_options=item.selected_options,
                     uploaded_file=item.uploaded_file,

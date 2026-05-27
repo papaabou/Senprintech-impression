@@ -17,7 +17,7 @@ class CartItem(models.Model):
     uploaded_file = models.FileField(upload_to="client_uploads", blank=True, null=True)
 
     def get_unit_price(self):
-        return self.configured_price or self.product.price
+        return self.configured_price or self.product.get_base_price()
     
     def get_total_price(self):
         return self.get_unit_price() * self.quantity
