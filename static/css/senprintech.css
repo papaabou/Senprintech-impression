@@ -5623,3 +5623,301 @@ body.site-body {
         margin-top: 28px;
     }
 }
+
+/* Mobile visual stabilization */
+@media (max-width: 760px) {
+    html,
+    body,
+    .site-body,
+    .site-main {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    img,
+    video,
+    canvas,
+    svg {
+        max-width: 100%;
+    }
+
+    .site-main {
+        padding-top: 72px;
+    }
+
+    .nav {
+        min-height: 68px;
+        width: min(100% - 24px, 1240px);
+    }
+
+    .brand {
+        max-width: 168px;
+    }
+
+    .brand-text {
+        font-size: 15px;
+        white-space: nowrap;
+    }
+
+    .brand-tagline {
+        display: none;
+    }
+
+    .brand-mark {
+        flex: 0 0 auto;
+    }
+
+    .menu-button {
+        display: inline-flex !important;
+        flex: 0 0 38px;
+    }
+
+    .nav-panel {
+        background: rgba(255, 255, 255, .98) !important;
+        border: 1px solid rgba(201, 154, 58, .18);
+        border-radius: 10px;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, .14);
+        display: none !important;
+        left: 0;
+        max-height: calc(100vh - 92px);
+        overflow-y: auto;
+        padding: 14px !important;
+        position: absolute;
+        right: 0;
+        top: calc(100% + 10px);
+        width: 100% !important;
+    }
+
+    .nav-toggle:checked ~ .nav-panel {
+        display: grid !important;
+        gap: 6px;
+    }
+
+    .nav-link,
+    .account-link {
+        color: #111 !important;
+        padding: 11px 10px;
+        width: 100%;
+    }
+
+    .nav-actions {
+        display: grid !important;
+        gap: 10px;
+        grid-template-columns: 44px minmax(0, 1fr);
+        width: 100%;
+    }
+
+    .user-menu {
+        position: relative;
+    }
+
+    .user-menu-panel {
+        left: 0;
+        right: auto;
+        width: min(240px, calc(100vw - 48px));
+    }
+
+    .cart-link {
+        justify-content: center;
+        min-width: 0;
+        width: 100%;
+    }
+
+    .hero-inner,
+    .quote-hero,
+    .auth-shell,
+    .contact-inner,
+    .split-inner,
+    .account-layout,
+    .checkout-layout,
+    .legal-layout {
+        grid-template-columns: 1fr !important;
+    }
+
+    .hero-inner {
+        max-height: none !important;
+        min-height: auto !important;
+        padding: 32px 0 !important;
+    }
+
+    .hero-media {
+        display: none !important;
+    }
+
+    .hero h1,
+    .quote-page .quote-hero h1,
+    .quote-hero h1,
+    .auth-copy h1 {
+        font-size: clamp(32px, 10vw, 42px) !important;
+        line-height: 1.08 !important;
+        max-width: 100% !important;
+    }
+
+    .hero-text,
+    .quote-hero-copy > p,
+    .auth-copy p {
+        font-size: 15px;
+        max-width: 100%;
+    }
+
+    .hero-actions,
+    .quote-hero-actions,
+    .auth-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hero-actions .button,
+    .quote-hero-actions .button,
+    .auth-form .button,
+    .contact-form .button,
+    .cart-actions .button,
+    .checkout-actions .button {
+        width: 100%;
+    }
+
+    .product-grid,
+    .catalogue-page .product-grid,
+    .catalogue-product-grid,
+    .service-grid,
+    .benefits-container,
+    .footer-links,
+    .legal-nav,
+    .auth-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .product-card,
+    .service-card,
+    .account-card,
+    .contact-form,
+    .checkout-summary,
+    .cart-table,
+    .legal-content {
+        min-width: 0;
+    }
+
+    .section-heading,
+    .catalogue-header,
+    .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .catalogue-sort,
+    .catalogue-sort select {
+        width: 100%;
+    }
+
+    .quote-page .quote-hero,
+    .quote-hero {
+        gap: 28px !important;
+        padding: 40px 0 48px !important;
+        width: min(100% - 28px, 720px) !important;
+    }
+
+    .quote-hero-visual img {
+        max-height: 300px;
+    }
+
+    .quote-stat-card strong {
+        font-size: 34px !important;
+    }
+
+    .message-stack {
+        left: 14px;
+        right: 14px;
+        top: 84px;
+        width: auto;
+    }
+
+    .site-message {
+        font-size: 14px;
+        line-height: 1.45;
+        padding: 14px 16px;
+    }
+}
+
+/* Home hero mobile fix: keep the first viewport clean under the sticky header. */
+@media (max-width: 760px) {
+    .site-main {
+        padding-top: 0 !important;
+    }
+
+    .hero {
+        overflow: hidden;
+    }
+
+    .hero-inner {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        width: min(100% - 28px, 560px) !important;
+        min-height: auto !important;
+        max-height: none !important;
+        padding: 34px 0 30px !important;
+    }
+
+    .hero-copy {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .hero .eyebrow {
+        margin-bottom: 10px !important;
+        font-size: 10px !important;
+        line-height: 1.2;
+    }
+
+    .hero h1 {
+        max-width: 11ch !important;
+        margin-bottom: 14px !important;
+        font-size: clamp(38px, 13vw, 50px) !important;
+        line-height: 1.02 !important;
+        overflow-wrap: normal;
+    }
+
+    .hero-text {
+        max-width: 32rem !important;
+        margin-bottom: 0;
+        font-size: 15px !important;
+        line-height: 1.55 !important;
+    }
+
+    .hero-actions {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+        margin-top: 22px !important;
+    }
+
+    .hero-actions .button {
+        width: 100% !important;
+        min-height: 44px !important;
+        padding: 11px 14px !important;
+        white-space: normal;
+    }
+
+    .hero-points {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+        margin-top: 18px !important;
+    }
+
+    .hero-points span {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-media {
+        display: none !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero h1 {
+        font-size: clamp(34px, 12vw, 42px) !important;
+    }
+}
