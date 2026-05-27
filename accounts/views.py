@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -14,6 +16,9 @@ from quotes.models import QuoteRequest
 
 from .forms import CustomerLoginForm, CustomerRegistrationForm, EmailVerificationForm
 from .models import EmailVerificationCode
+
+
+logger = logging.getLogger(__name__)
 
 
 def send_verification_email(request, user, code):
@@ -50,8 +55,14 @@ def register(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.email = form.cleaned_data["email"]
-            user.is_active = False
+            user.is_active = not settings.ACCOUNT_EMAIL_VERIFICATION_REQUIRED
             user.save()
+
+            if not settings.ACCOUNT_EMAIL_VERIFICATION_REQUIRED:
+                login(request, user)
+                messages.success(request, "Votre compte a été créé. Vous êtes connecté.")
+                return redirect("accounts:account_home")
+
             verification, code = EmailVerificationCode.create_for_user(user)
             set_pending_verification(request, user)
             try:
@@ -61,6 +72,7 @@ def register(request):
                     "Votre compte a été créé. Entrez le code reçu par email pour l'activer.",
                 )
             except Exception:
+                logger.exception("Unable to send account verification email for user_id=%s", user.id)
                 messages.warning(
                     request,
                     "Votre compte a été créé, mais l'email de vérification n'a pas pu être envoyé. Demandez un nouveau code.",
@@ -159,6 +171,7 @@ def resend_verification_code(request):
         send_verification_email(request, user, code)
         messages.success(request, "Un nouveau code de vérification vous a été envoyé.")
     except Exception:
+        logger.exception("Unable to resend account verification email for user_id=%s", user.id)
         messages.warning(request, "Le code a été généré, mais l'email n'a pas pu être envoyé pour le moment.")
     return redirect("accounts:verify_email")
 

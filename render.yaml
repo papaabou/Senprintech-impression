@@ -26,6 +26,8 @@ services:
         value: "True"
       - key: SERVE_MEDIA_FILES
         value: "True"
+      - key: ACCOUNT_EMAIL_VERIFICATION_REQUIRED
+        value: "True"
       - key: MEDIA_ROOT
         value: "/var/data/mediafiles"
       - key: EMAIL_BACKEND
@@ -45,6 +47,12 @@ services:
       - key: EMAIL_HOST_USER
         sync: false
       - key: EMAIL_HOST_PASSWORD
+        sync: false
+      - key: ADMIN_USERNAME
+        value: "admin"
+      - key: ADMIN_EMAIL
+        value: "admin@senprintech.com"
+      - key: ADMIN_PASSWORD
         sync: false
       - key: DATABASE_URL
         fromDatabase:

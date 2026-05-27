@@ -39,10 +39,15 @@ ALLOWED_HOSTS=.onrender.com
 CSRF_TRUSTED_ORIGINS=https://*.onrender.com
 DATABASE_URL=postgresql://...
 
+ADMIN_USERNAME=admin
+ADMIN_EMAIL=admin@senprintech.com
+ADMIN_PASSWORD=mot-de-passe-admin-fort
+
 SECURE_SSL_REDIRECT=True
 SESSION_COOKIE_SECURE=True
 CSRF_COOKIE_SECURE=True
 SERVE_MEDIA_FILES=True
+ACCOUNT_EMAIL_VERIFICATION_REQUIRED=True
 MEDIA_ROOT=/var/data/mediafiles
 
 EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
@@ -112,7 +117,19 @@ python manage.py migrate
 
 ## 6. Créer le superuser admin
 
-Depuis le Shell Render :
+Le build lance `python manage.py create_initial_superuser`.
+Cette commande crée `admin` seulement si aucun superuser n'existe déjà.
+Elle ne modifie pas le mot de passe à chaque déploiement.
+
+Variables Render obligatoires pour l'admin initial :
+
+```env
+ADMIN_USERNAME=admin
+ADMIN_EMAIL=admin@senprintech.com
+ADMIN_PASSWORD=mot-de-passe-admin-fort
+```
+
+Depuis le Shell Render si disponible :
 
 ```bash
 python manage.py createsuperuser
@@ -190,3 +207,24 @@ https://myaccount.google.com/apppasswords
 Cause : `DATABASE_URL` absent.
 
 Correction : créer une base PostgreSQL Render et ajouter `DATABASE_URL`.
+Sans base persistante, les utilisateurs créés en production peuvent disparaître après redéploiement et les connexions échouent.
+
+### Inscription créée mais connexion refusée
+
+Cause probable : le compte est créé avec `is_active=False` en attendant le code email.
+Si Gmail/SMTP n'est pas configuré avec un mot de passe d'application valide, le client ne reçoit pas le code et `authenticate()` refuse la connexion.
+
+Correction :
+
+```env
+EMAIL_HOST_USER=papeaboumbaye@gmail.com
+EMAIL_HOST_PASSWORD=mot-de-passe-application-gmail
+```
+
+Solution temporaire si Gmail bloque encore :
+
+```env
+ACCOUNT_EMAIL_VERIFICATION_REQUIRED=False
+```
+
+Avec cette valeur, le client est activé et connecté directement après inscription.
