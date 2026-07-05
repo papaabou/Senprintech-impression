@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django.shortcuts import render, get_object_or_404, redirect
 from products.forms import ProductConfigurationForm
 from products.models import Product
@@ -72,6 +73,10 @@ def cart_add(request, product_id):
         uploaded_file=form.get_uploaded_file(),
     )
     
+    cart_item_count = (
+        CartItem.objects.filter(cart=cart).aggregate(total=Sum("quantity")).get("total") or 0
+    )
+
     response_data = {
         "success":True,
         "message": f'Added {product.name} to cart',
@@ -79,8 +84,9 @@ def cart_add(request, product_id):
         "configured_price": str(cart_item.configured_price),
         "quantity": cart_item.quantity,
         "line_total": str(cart_item.get_total_price()),
+        "cart_item_count": cart_item_count,
     }
-    
+
     return JsonResponse(response_data)
     
     

@@ -53,13 +53,16 @@ load_env_file(BASE_DIR / ".env")
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret.
-SECRET_KEY = os.environ.get(
-    "SECRET_KEY",
-    "django-insecure-vw$4kjb@u+@o#ic7k+=_$__x0c#%d*u@jzk2kz1b$ind+&6-b3",
-)
+_INSECURE_DEFAULT_SECRET_KEY = "django-insecure-vw$4kjb@u+@o#ic7k+=_$__x0c#%d*u@jzk2kz1b$ind+&6-b3"
+SECRET_KEY = os.environ.get("SECRET_KEY", _INSECURE_DEFAULT_SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production.
 DEBUG = env_bool("DEBUG", True)
+
+if not DEBUG and SECRET_KEY == _INSECURE_DEFAULT_SECRET_KEY:
+    raise ImproperlyConfigured(
+        "SECRET_KEY doit etre defini via la variable d'environnement en production."
+    )
 
 ALLOWED_HOSTS = env_list(
     "ALLOWED_HOSTS",
@@ -118,6 +121,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'ecommercesite.context_processors.whatsapp',
                 'ecommercesite.context_processors.cart_summary',
+                'ecommercesite.context_processors.static_version',
             ],
         },
     },
@@ -213,6 +217,10 @@ ACCOUNT_EMAIL_VERIFICATION_REQUIRED = env_bool("ACCOUNT_EMAIL_VERIFICATION_REQUI
 WHATSAPP_NUMBER = "221710460959"
 WHATSAPP_DISPLAY_NUMBER = "+221 71 046 09 59"
 WHATSAPP_GENERAL_MESSAGE = "Bonjour SenPrinTech, je souhaite avoir des informations sur vos services d'impression."
+
+CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "contact@senprintech.com")
+CONTACT_EMAIL_SUBJECT = "Demande d'informations SenPrinTech"
+CONTACT_EMAIL_BODY = "Bonjour SenPrinTech, je souhaite avoir des informations sur vos services d'impression."
 
 EMAIL_BACKEND = os.environ.get(
     "EMAIL_BACKEND",

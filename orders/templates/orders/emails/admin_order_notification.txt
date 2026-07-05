@@ -1,0 +1,24 @@
+Nouvelle commande SenPrinTech
+
+Commande : {{ order.order_number }}
+Client : {{ order.full_name }}
+Email : {{ order.email }}
+Telephone : {{ order.phone|default:"-" }}
+Adresse : {{ order.address }}
+Ville : {{ order.city|default:"-" }}
+Livraison : {{ order.get_delivery_method_display }}
+Methode de paiement : {{ order.get_payment_method_display }}
+Statut paiement : {{ order.get_payment_status_display }}
+
+Articles :
+{% for entry in items %}
+- {{ entry.item.product.name }} x{{ entry.item.quantity }} ({{ entry.item.get_cost }} FCFA){% for option in entry.item.selected_options %}
+  {{ option.name }} : {{ option.label|default:option.value }}{% endfor %}{% if entry.file_url %}
+  Fichier : {{ entry.file_url }}{% endif %}
+{% endfor %}
+Total commande : {{ order.get_total_cost }} FCFA
+
+{% if order.notes %}Notes client :
+{{ order.notes }}
+{% endif %}
+Voir la commande dans l'admin : {{ admin_url }}

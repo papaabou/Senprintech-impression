@@ -5,8 +5,9 @@
 		<title>{%block title%}SenPrinTech - Impression digitale premium{%endblock%}</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		{% load static %}
-		<link href="{% static 'dist/styles.css'%}" rel="stylesheet" />
-		<link href="{% static 'css/senprintech.css'%}" rel="stylesheet" />
+		<link href="{% static 'img/favicon.svg' %}" rel="icon" type="image/svg+xml" />
+		<link href="{% static 'dist/styles.css'%}?v={{ static_version }}" rel="stylesheet" />
+		<link href="{% static 'css/senprintech.css'%}?v={{ static_version }}" rel="stylesheet" />
 		<meta name="description" content="SenPrinTech imprime vos flyers, cartes de visite, t-shirts, mugs et stickers avec une finition professionnelle." />
 	</head>
 	<body class="site-body">
@@ -40,7 +41,7 @@
 					<a href="{% url 'faq' %}">FAQ</a>
 				</div>
 				<div class="footer-contact">
-					<a href="mailto:contact@senprintech.com">contact@senprintech.com</a>
+					<a href="{{ CONTACT_EMAIL_URL }}">{{ CONTACT_EMAIL }}</a>
 					<a href="tel:+221710460959">+221 71 046 09 59</a>
 					<a href="{{ WHATSAPP_GENERAL_URL }}" target="_blank" rel="noopener">WhatsApp {{ WHATSAPP_DISPLAY_NUMBER }}</a>
 				</div>
@@ -57,6 +58,20 @@
 							message.remove();
 						}, 400);
 					}, 4500);
+				});
+
+				document.querySelectorAll("form").forEach(function (form) {
+					form.addEventListener("submit", function () {
+						if (form.dataset.submitted === "true") {
+							return;
+						}
+						form.dataset.submitted = "true";
+						window.setTimeout(function () {
+							form.querySelectorAll('button[type="submit"]').forEach(function (button) {
+								button.disabled = true;
+							});
+						}, 0);
+					});
 				});
 			});
 		</script>

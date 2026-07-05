@@ -1,0 +1,14 @@
+{% extends "admin/change_list.html" %}
+
+{% block content_title %}
+{{ block.super }}
+<div class="sp-help-banner">
+    <p class="sp-help-banner-title">Comment gerer vos produits</p>
+    <ol>
+        <li><strong>Ajouter un produit</strong> : cliquez sur le bouton dore <em>"Ajouter produit"</em> en haut a droite.</li>
+        <li><strong>Modifier un produit</strong> (nom, description, image, options...) : cliquez sur son nom dans le tableau.</li>
+        <li><strong>Changer vite le prix ou la disponibilite</strong> : modifiez directement la case dans le tableau ci-dessous, puis cliquez sur le bouton <em>"Enregistrer"</em> en bas de la page.</li>
+        <li><strong>Supprimer un ou plusieurs produits</strong> : cochez la case a gauche du/des produit(s), choisissez <em>"Supprimer..."</em> dans le menu "Action" en haut du tableau, puis cliquez sur <em>"Executer"</em>.</li>
+    </ol>
+</div>
+{% endblock %}

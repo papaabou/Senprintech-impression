@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
+from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 from django.urls import reverse
@@ -51,8 +52,21 @@ def register(request):
         return redirect("accounts:account_home")
 
     if request.method == "POST":
-        form = CustomerRegistrationForm(request.POST)
+        username = request.POST.get("username", "").strip()
+        email = request.POST.get("email", "").strip()
+        stale_user = None
+        if username or email:
+            lookup = Q(is_active=False)
+            fields = Q()
+            if username:
+                fields |= Q(username__iexact=username)
+            if email:
+                fields |= Q(email__iexact=email)
+            stale_user = User.objects.filter(lookup & fields).first()
+
+        form = CustomerRegistrationForm(request.POST, instance=stale_user)
         if form.is_valid():
+            is_retry = stale_user is not None
             user = form.save(commit=False)
             user.email = form.cleaned_data["email"]
             user.is_active = not settings.ACCOUNT_EMAIL_VERIFICATION_REQUIRED
@@ -67,10 +81,16 @@ def register(request):
             set_pending_verification(request, user)
             try:
                 send_verification_email(request, user, code)
-                messages.success(
-                    request,
-                    "Votre compte a été créé. Entrez le code reçu par email pour l'activer.",
-                )
+                if is_retry:
+                    messages.success(
+                        request,
+                        "Vous aviez déjà commencé cette inscription sans la valider. Un nouveau code vous a été envoyé par email.",
+                    )
+                else:
+                    messages.success(
+                        request,
+                        "Votre compte a été créé. Entrez le code reçu par email pour l'activer.",
+                    )
             except Exception:
                 logger.exception("Unable to send account verification email for user_id=%s", user.id)
                 messages.warning(

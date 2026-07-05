@@ -1,41 +1,161 @@
 :root {
-    --sp-black: #0b0b0b;
-    --sp-line: #e8e8e8;
-    --sp-soft: #f7f7f7;
-    --sp-gold: #a9873f;
+    --sp-black: #0b0b0d;
+    --sp-ink: #111827;
+    --sp-muted: #6b7280;
+    --sp-line: #eceef2;
+    --sp-soft: #f7f8fb;
+    --sp-gold: #c99a3a;
+    --sp-gold-dark: #9f7625;
+    --sp-white: #ffffff;
+    --sp-shadow-sm: 0 1px 2px rgba(16, 24, 40, .04), 0 1px 3px rgba(16, 24, 40, .06);
+    --sp-shadow-md: 0 4px 10px rgba(16, 24, 40, .05), 0 12px 28px rgba(16, 24, 40, .07);
+    --sp-shadow-lg: 0 20px 44px rgba(16, 24, 40, .12);
+    --sp-radius: 14px;
 }
 
+/* Force the light theme regardless of OS dark-mode preference or the
+   admin's own theme toggle: Django's dark_mode.css redefines these same
+   custom properties, so every value below must stay !important to win. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: #111827 !important;
+        --primary-fg: #ffffff !important;
+        --body-fg: #111827 !important;
+        --body-bg: #ffffff !important;
+        --body-quiet-color: #6b7280 !important;
+        --body-medium-color: #374151 !important;
+        --body-loud-color: #111827 !important;
+        --breadcrumbs-link-fg: rgba(17, 24, 39, .7) !important;
+        --breadcrumbs-bg: #ffffff !important;
+        --link-fg: #111827 !important;
+        --link-hover-color: #9f7625 !important;
+        --link-selected-fg: #9f7625 !important;
+        --hairline-color: #eceef2 !important;
+        --border-color: #eceef2 !important;
+        --error-fg: #b91c1c !important;
+        --darkened-bg: #f7f8fb !important;
+        --selected-bg: #fdf8ee !important;
+        --selected-row: #fdf8ee !important;
+        --close-button-bg: #333333 !important;
+        --close-button-hover-bg: #666666 !important;
+        color-scheme: light !important;
+    }
+}
+
+html[data-theme="dark"] {
+    --primary: #111827 !important;
+    --primary-fg: #ffffff !important;
+    --body-fg: #111827 !important;
+    --body-bg: #ffffff !important;
+    --body-quiet-color: #6b7280 !important;
+    --body-medium-color: #374151 !important;
+    --body-loud-color: #111827 !important;
+    --breadcrumbs-link-fg: rgba(17, 24, 39, .7) !important;
+    --breadcrumbs-bg: #ffffff !important;
+    --link-fg: #111827 !important;
+    --link-hover-color: #9f7625 !important;
+    --link-selected-fg: #9f7625 !important;
+    --hairline-color: #eceef2 !important;
+    --border-color: #eceef2 !important;
+    --error-fg: #b91c1c !important;
+    --darkened-bg: #f7f8fb !important;
+    --selected-bg: #fdf8ee !important;
+    --selected-row: #fdf8ee !important;
+    --close-button-bg: #333333 !important;
+    --close-button-hover-bg: #666666 !important;
+    color-scheme: light !important;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--sp-soft) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+    letter-spacing: -.01em;
+}
+
+/* ============ Top header: slim, light, modern ============ */
 #header {
-    background: var(--sp-black);
-    color: #fff;
+    background: #fff;
+    color: var(--sp-ink);
+    border-bottom: 1px solid var(--sp-line);
+    padding: 14px 28px;
+    box-shadow: none;
 }
 
 #branding h1,
 #branding h1 a:link,
 #branding h1 a:visited {
-    color: #fff;
-    font-weight: 700;
-    letter-spacing: .04em;
+    color: var(--sp-ink) !important;
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: -.01em;
+}
+
+#branding h1::before {
+    content: "SP";
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    border-radius: 8px;
+    background: var(--sp-black);
+    color: var(--sp-gold);
+    font-size: 11px;
+    font-weight: 950;
+    vertical-align: middle;
+}
+
+#user-tools {
+    font-size: 13px;
+    color: var(--sp-muted);
+}
+
+#user-tools a:link,
+#user-tools a:visited {
+    color: var(--sp-muted) !important;
+}
+
+#user-tools a:hover {
+    color: var(--sp-ink) !important;
 }
 
 div.breadcrumbs {
-    background: #171717;
+    background: #fff;
+    border-bottom: 1px solid var(--sp-line);
+    color: var(--sp-muted);
+    padding: 12px 28px;
+    font-size: 13px;
 }
 
-.module h2,
-.module caption,
-.inline-group h2 {
-    background: #111;
-    color: #fff;
+div.breadcrumbs a {
+    color: var(--sp-muted);
 }
 
+div.breadcrumbs a:hover {
+    color: var(--sp-ink);
+}
+
+#content {
+    padding: 24px 28px;
+}
+
+/* ============ Links & buttons ============ */
 a:link,
 a:visited {
-    color: #111;
+    color: var(--sp-ink);
 }
 
-a:hover {
-    color: var(--sp-gold);
+a:hover,
+a:focus {
+    color: var(--sp-gold-dark);
 }
 
 .button,
@@ -43,20 +163,461 @@ input[type=submit],
 input[type=button],
 .submit-row input,
 a.button {
-    border-radius: 0;
-    background: #111;
+    border: 0;
+    border-radius: 999px;
+    background: var(--sp-black);
+    color: #fff;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: var(--sp-shadow-sm);
+    transition: background .16s ease, transform .16s ease, box-shadow .16s ease;
+}
+
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+.submit-row input:hover,
+a.button:hover {
+    background: #262626;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: var(--sp-shadow-md);
 }
 
 .button.default,
 input[type=submit].default,
 .submit-row input.default {
-    background: #111;
+    background: var(--sp-gold);
+    color: #111;
 }
 
+.button.default:hover,
+input[type=submit].default:hover,
+.submit-row input.default:hover {
+    background: var(--sp-gold-dark);
+    color: #fff;
+}
+
+.deletelink-box input,
+.deletelink {
+    background: #fff !important;
+    color: #b91c1c !important;
+    border: 1px solid #fecaca !important;
+    box-shadow: none !important;
+}
+
+.deletelink-box input:hover,
+.deletelink:hover {
+    background: #fef2f2 !important;
+    border-color: #f87171 !important;
+}
+
+.object-tools a.addlink {
+    background: var(--sp-black);
+    color: var(--sp-gold);
+    border-radius: 999px;
+    font-weight: 800;
+}
+
+.object-tools a.addlink:hover {
+    background: #262626;
+    color: #fff;
+}
+
+/* ============ Login page ============ */
+html.login,
+body.login {
+    height: 100% !important;
+    min-height: 100vh !important;
+}
+
+body.login {
+    background: radial-gradient(circle at 20% 20%, #201a10 0%, #0b0b0d 45%, #0b0b0d 100%) !important;
+    background-attachment: fixed !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.login #container {
+    width: auto !important;
+    max-width: 400px !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 20px !important;
+    background: #fff !important;
+    box-shadow: var(--sp-shadow-lg) !important;
+    overflow: hidden !important;
+}
+
+.login #header {
+    background: var(--sp-black) !important;
+    border-bottom: 0 !important;
+    text-align: center !important;
+    padding: 36px 24px 28px !important;
+}
+
+.login #branding h1::before {
+    display: block !important;
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 auto 14px !important;
+    border-radius: 12px !important;
+    font-size: 15px !important;
+}
+
+.login #branding h1,
+.login #branding h1 a:link,
+.login #branding h1 a:visited {
+    color: #fff !important;
+    font-size: 17px !important;
+    text-align: center !important;
+}
+
+.login .module {
+    padding: 32px 34px 34px !important;
+    border: 0 !important;
+}
+
+.login form .form-row {
+    padding: 0 0 18px !important;
+    border: 0 !important;
+    overflow: visible !important;
+}
+
+.login .form-row label {
+    display: block !important;
+    float: none !important;
+    width: auto !important;
+    margin: 0 0 7px !important;
+    color: var(--sp-ink) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+}
+
+.login .form-row #id_username,
+.login .form-row #id_password,
+.login input[type=text],
+.login input[type=password] {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    border: 1px solid var(--sp-line) !important;
+    border-radius: 10px !important;
+    background: var(--sp-soft) !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+}
+
+.login .form-row #id_username:focus,
+.login .form-row #id_password:focus {
+    border-color: var(--sp-gold) !important;
+    outline: none !important;
+    background: #fff !important;
+}
+
+.login .submit-row {
+    padding: 8px 0 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    text-align: left !important;
+}
+
+.login .submit-row input {
+    width: 100% !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    background: var(--sp-gold) !important;
+    color: #111 !important;
+    padding: 13px !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+    box-shadow: 0 10px 24px rgba(201, 154, 58, .3) !important;
+}
+
+.login .submit-row input:hover {
+    background: var(--sp-gold-dark) !important;
+    color: #fff !important;
+}
+
+.login .password-reset-link {
+    display: block !important;
+    margin-top: 16px !important;
+    text-align: center !important;
+    font-size: 13px !important;
+}
+
+.login br {
+    display: none !important;
+}
+
+/* Final, unambiguous override for the login submit button */
+body.login div.submit-row input[type="submit"] {
+    background-color: #c99a3a !important;
+    background-image: none !important;
+    color: #111827 !important;
+}
+
+body.login div.submit-row input[type="submit"]:hover {
+    background-color: #9f7625 !important;
+    color: #ffffff !important;
+}
+
+/* ============ Left app-list sidebar ============ */
+#nav-sidebar {
+    background: var(--sp-black);
+    border: 0;
+    padding-top: 8px;
+}
+
+.main > #nav-sidebar {
+    border-right: 1px solid #000;
+}
+
+#nav-sidebar .module {
+    background: transparent;
+    margin-bottom: 4px;
+}
+
+#nav-sidebar table,
+#nav-sidebar tbody,
+#nav-sidebar tr,
+#nav-sidebar th,
+#nav-sidebar td,
+#nav-sidebar tr.row1,
+#nav-sidebar tr.row2 {
+    background: transparent !important;
+    border: 0 !important;
+}
+
+#nav-sidebar caption,
+#nav-sidebar .module h2 {
+    background: transparent;
+    color: rgba(255, 255, 255, .38);
+    padding: 18px 20px 8px;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+#nav-sidebar table a {
+    position: relative;
+    display: block;
+    color: rgba(255, 255, 255, .74);
+    padding: 9px 20px;
+    font-size: 13.5px;
+    font-weight: 600;
+    border-radius: 0;
+}
+
+#nav-sidebar table a:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, .05);
+}
+
+#nav-sidebar .current-app .section,
+#nav-sidebar .current-model {
+    color: var(--sp-gold) !important;
+    font-weight: 800;
+}
+
+#nav-sidebar .current-model a {
+    color: #fff !important;
+    background: rgba(201, 154, 58, .14);
+}
+
+#nav-sidebar .current-model a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 6px;
+    bottom: 6px;
+    width: 3px;
+    border-radius: 0 3px 3px 0;
+    background: var(--sp-gold);
+}
+
+#nav-sidebar input#nav-filter {
+    width: calc(100% - 40px);
+    margin: 10px 20px 14px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, .05);
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 13px;
+}
+
+/* ============ Modules / fieldsets ============ */
+.module,
+.inline-group {
+    border: 1px solid var(--sp-line);
+    border-radius: var(--sp-radius);
+    background: #fff;
+    box-shadow: var(--sp-shadow-sm);
+    overflow: hidden;
+}
+
+.module h2,
+.module caption,
+.inline-group h2,
+fieldset.module h2 {
+    background: #fff;
+    color: var(--sp-ink);
+    border-bottom: 1px solid var(--sp-line);
+    border-radius: 0;
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: .01em;
+    text-transform: none;
+}
+
+.form-row {
+    border-bottom: 1px solid var(--sp-line);
+    padding: 16px 20px;
+}
+
+.form-row:last-child {
+    border-bottom: 0;
+}
+
+.form-row label {
+    color: var(--sp-ink);
+    font-weight: 700;
+    font-size: 13.5px;
+}
+
+input[type=text], input[type=password], input[type=email], input[type=url],
+input[type=number], input[type=tel], textarea, select {
+    border: 1px solid var(--sp-line) !important;
+    border-radius: 9px !important;
+    background: var(--sp-soft) !important;
+    padding: 9px 12px !important;
+    transition: border-color .15s ease, background .15s ease;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus,
+textarea:focus, select:focus {
+    border-color: var(--sp-gold) !important;
+    background: #fff !important;
+    outline: none;
+}
+
+.submit-row {
+    background: var(--sp-soft);
+    border-top: 1px solid var(--sp-line);
+    border-radius: 0 0 var(--sp-radius) var(--sp-radius);
+    padding: 16px 20px;
+}
+
+/* ============ Changelist (tables) ============ */
+#changelist-filter {
+    border: 1px solid var(--sp-line);
+    border-radius: var(--sp-radius);
+    background: #fff;
+    box-shadow: var(--sp-shadow-sm);
+}
+
+#changelist-filter h2 {
+    background: #fff;
+    color: var(--sp-ink);
+    border-bottom: 1px solid var(--sp-line);
+    border-radius: var(--sp-radius) var(--sp-radius) 0 0;
+    padding: 14px 18px;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: none;
+}
+
+#changelist-filter h3 {
+    color: var(--sp-ink);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+#changelist-filter li.selected a {
+    color: var(--sp-gold-dark);
+    font-weight: 800;
+}
+
+#changelist table.results,
+.results {
+    border: 1px solid var(--sp-line);
+    border-radius: var(--sp-radius);
+    box-shadow: var(--sp-shadow-sm);
+    overflow: hidden;
+}
+
+#changelist table thead th {
+    background: var(--sp-soft);
+    color: var(--sp-ink) !important;
+    border-bottom: 1px solid var(--sp-line);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    font-weight: 800;
+}
+
+#changelist table thead th a:link,
+#changelist table thead th a:visited {
+    color: var(--sp-ink) !important;
+}
+
+#changelist table tbody th,
+#changelist table tbody td {
+    border-bottom: 1px solid var(--sp-line);
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+#changelist table tbody tr:last-child th,
+#changelist table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+#changelist table tbody tr:hover {
+    background: #fdf8ee;
+}
+
+.paginator {
+    border-radius: 0 0 var(--sp-radius) var(--sp-radius);
+}
+
+#toolbar {
+    border: 1px solid var(--sp-line);
+    border-radius: var(--sp-radius);
+    background: #fff;
+    box-shadow: var(--sp-shadow-sm);
+    padding: 14px 18px;
+    margin-bottom: 16px;
+}
+
+#toolbar #searchbar {
+    border: 1px solid var(--sp-line) !important;
+    border-radius: 9px !important;
+    padding: 9px 12px !important;
+}
+
+/* Django reserves the default dashboard's #content to 600px to leave room
+   for the "recent actions" sidebar. Our custom index template doesn't use
+   that sidebar, so let the dashboard use the full width instead. */
+.dashboard #content {
+    width: auto !important;
+    max-width: none !important;
+}
+
+/* ============ Dashboard (custom index) ============ */
 .sp-admin-dashboard {
     display: grid;
-    gap: 20px;
-    margin-bottom: 24px;
+    gap: 22px;
+    margin-bottom: 28px;
 }
 
 .sp-admin-hero {
@@ -64,9 +625,11 @@ input[type=submit].default,
     align-items: end;
     justify-content: space-between;
     gap: 20px;
-    background: #0b0b0b;
+    border-radius: var(--sp-radius);
+    background: radial-gradient(circle at 15% 20%, #201a10 0%, #0b0b0d 55%);
     color: #fff;
-    padding: 28px;
+    padding: 32px;
+    box-shadow: var(--sp-shadow-lg);
 }
 
 .sp-admin-hero p {
@@ -81,104 +644,181 @@ input[type=submit].default,
 .sp-admin-hero h1 {
     margin: 0 0 8px;
     color: #fff;
-    font-size: 32px;
+    font-size: 34px;
+    font-weight: 800;
     line-height: 1;
 }
 
 .sp-admin-hero span {
-    color: rgba(255, 255, 255, .7);
+    color: rgba(255, 255, 255, .65);
+    font-size: 14px;
 }
 
 .sp-admin-button {
-    border: 1px solid rgba(255, 255, 255, .28);
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .06);
     color: #fff !important;
-    padding: 10px 14px;
+    padding: 11px 20px;
+    font-size: 13px;
+    font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
+    transition: background .18s ease, border-color .18s ease;
+}
+
+.sp-admin-button:hover {
+    background: var(--sp-gold);
+    border-color: var(--sp-gold);
+    color: #111 !important;
 }
 
 .sp-admin-stats {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 12px;
+    gap: 14px;
 }
 
 .sp-admin-stats article,
 .sp-admin-card {
+    position: relative;
     border: 1px solid var(--sp-line);
+    border-radius: var(--sp-radius);
     background: #fff;
-    padding: 18px;
+    padding: 20px 20px 20px 22px;
+    box-shadow: var(--sp-shadow-sm);
+    transition: transform .18s ease, box-shadow .18s ease;
+    overflow: hidden;
+}
+
+.sp-admin-stats article::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--sp-gold);
+}
+
+.sp-admin-stats article:nth-child(2)::before { background: #2563eb; }
+.sp-admin-stats article:nth-child(3)::before { background: #16a34a; }
+.sp-admin-stats article:nth-child(4)::before { background: #dc2626; }
+.sp-admin-stats article:nth-child(5)::before { background: var(--sp-black); }
+
+.sp-admin-stats article:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sp-shadow-md);
 }
 
 .sp-admin-stats span {
     display: block;
-    margin-bottom: 10px;
-    color: #666;
-    font-size: 12px;
+    margin-bottom: 12px;
+    color: var(--sp-muted);
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
 }
 
 .sp-admin-stats strong {
-    color: #111;
-    font-size: 24px;
+    color: var(--sp-ink);
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -.01em;
 }
 
 .sp-admin-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 18px;
 }
 
 .sp-card-heading {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 12px;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .sp-card-heading h2 {
     margin: 0;
-    background: transparent;
-    color: #111;
-    font-size: 18px;
+    background: transparent !important;
+    border: 0 !important;
+    color: var(--sp-ink) !important;
+    padding: 0 !important;
+    font-size: 15.5px;
+    font-weight: 800;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+}
+
+.sp-card-heading a {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--sp-gold-dark);
+    text-decoration: none;
+}
+
+.sp-card-heading a:hover {
+    text-decoration: underline;
 }
 
 .sp-admin-list {
     display: grid;
-    gap: 8px;
+    gap: 4px;
 }
 
 .sp-admin-list a,
 .sp-admin-list p {
     display: grid;
-    gap: 3px;
+    gap: 4px;
     margin: 0;
-    border-top: 1px solid #f0f0f0;
-    padding: 10px 0 0;
+    border-top: 1px solid var(--sp-line);
+    padding: 12px 6px;
+    border-radius: 8px;
     text-decoration: none;
+    transition: background .15s ease;
+}
+
+.sp-admin-list a:hover {
+    background: var(--sp-soft);
+}
+
+.sp-admin-list a:hover span {
+    color: var(--sp-gold-dark);
 }
 
 .sp-admin-list span {
-    color: #111;
+    color: var(--sp-ink);
     font-weight: 700;
+    font-size: 13.5px;
+    transition: color .15s ease;
 }
 
 .sp-admin-list strong {
-    color: var(--sp-gold);
-    font-size: 12px;
+    color: var(--sp-gold-dark);
+    font-size: 11.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .02em;
 }
 
 .sp-admin-list small {
-    color: #777;
+    color: var(--sp-muted);
+    font-size: 12px;
 }
 
 .sp-admin-badge {
     display: inline-flex;
     align-items: center;
     border: 1px solid color-mix(in srgb, var(--badge-color) 35%, #fff);
+    border-radius: 999px;
     background: color-mix(in srgb, var(--badge-color) 10%, #fff);
     color: var(--badge-color);
-    padding: 4px 8px;
-    font-size: 12px;
+    padding: 4px 10px;
+    font-size: 11.5px;
     font-weight: 700;
     white-space: nowrap;
 }
@@ -196,4 +836,59 @@ input[type=submit].default,
     .sp-admin-stats {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+}
+
+/* ============ Help banner on changelist pages ============ */
+.sp-help-banner {
+    margin: 4px 0 20px;
+    border: 1px solid var(--sp-line);
+    border-left: 4px solid var(--sp-gold);
+    border-radius: 12px;
+    background: #fffdf7;
+    padding: 16px 20px;
+    box-shadow: var(--sp-shadow-sm);
+}
+
+.sp-help-banner-title {
+    margin: 0 0 10px;
+    color: var(--sp-ink);
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.sp-help-banner ol {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.sp-help-banner li {
+    color: var(--sp-ink);
+    font-size: 13.5px;
+    line-height: 1.5;
+}
+
+.sp-help-banner em {
+    color: var(--sp-gold-dark);
+    font-style: normal;
+    font-weight: 700;
+}
+
+/* Make inline-editable changelist fields (e.g. price, available) obviously
+   editable instead of blending into the table. */
+#changelist form#changelist-form #result_list input[type="text"],
+#changelist form#changelist-form #result_list input[type="number"] {
+    border: 1px solid var(--sp-gold) !important;
+    background: #fffdf7 !important;
+    padding: 6px 8px !important;
+    font-weight: 700;
+}
+
+#changelist form#changelist-form #result_list input[type="text"]:focus,
+#changelist form#changelist-form #result_list input[type="number"]:focus {
+    background: #fff !important;
+    box-shadow: 0 0 0 3px rgba(201, 154, 58, .18);
 }

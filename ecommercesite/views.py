@@ -18,7 +18,10 @@ LEGAL_PAGES = {
 
 
 def legal_page(request, page):
-    return render(request, LEGAL_PAGES[page])
+    template_name = LEGAL_PAGES.get(page)
+    if not template_name:
+        raise Http404("Page not found")
+    return render(request, template_name)
 
 
 def media_file(request, path):

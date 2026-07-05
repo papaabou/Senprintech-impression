@@ -19,10 +19,9 @@
                 {% csrf_token %}
                 <div class="checkout-form-section">
                     <div class="checkout-section-heading">
-                        <span>1</span>
                         <div>
                             <h2>Vos informations</h2>
-                            <p>Ces informations permettent de confirmer la commande et la livraison.</p>
+                            <p>Pour confirmer la commande et la livraison.</p>
                         </div>
                     </div>
                 <div class="auth-grid">
@@ -62,23 +61,22 @@
                 </div>
                 <div class="checkout-form-section">
                     <div class="checkout-section-heading">
-                        <span>2</span>
                         <div>
-                            <h2>Methode paiement</h2>
-                            <p>Choisissez Wave ou Orange Money. Le paiement est confirme par WhatsApp apres creation.</p>
+                            <h2>Paiement</h2>
+                            <p>Choisissez Wave ou Orange Money. Vous payez sur WhatsApp, apres creation de la commande.</p>
                         </div>
                     </div>
                 <fieldset class="payment-method-field">
                     <legend>{{ form.payment_method.label }}</legend>
                     <div class="payment-method-grid">
                         {% for choice in form.payment_method %}
-                        <label class="payment-method-card{% if choice.choice_value == 'card' %} is-disabled{% endif %}">
+                        <label class="payment-method-card{% if choice.data.value == 'card' %} is-disabled{% endif %}">
                             {{ choice.tag }}
                             <span>
                                 <strong>{{ choice.choice_label }}</strong>
-                                {% if choice.choice_value == 'wave' %}
+                                {% if choice.data.value == 'wave' %}
                                 <small>Assistance WhatsApp pour confirmer votre transfert Wave.</small>
-                                {% elif choice.choice_value == 'orange_money' %}
+                                {% elif choice.data.value == 'orange_money' %}
                                 <small>Assistance WhatsApp pour finaliser via Orange Money.</small>
                                 {% else %}
                                 <small>Integration bancaire preparee pour une prochaine version.</small>
@@ -89,25 +87,13 @@
                     </div>
                     {% for error in form.payment_method.errors %}<small>{{ error }}</small>{% endfor %}
                 </fieldset>
-                </div>
-                <div class="checkout-form-section">
-                    <div class="checkout-section-heading">
-                        <span>3</span>
-                        <div>
-                            <h2>Verification finale</h2>
-                            <p>Ajoutez une precision si besoin, puis creez la commande.</p>
-                        </div>
-                    </div>
-                <label>
-                    <span>{{ form.notes.label }}</span>
+                <label class="checkout-notes-field">
+                    <span>{{ form.notes.label }} <em>(facultatif)</em></span>
                     {{ form.notes }}
                     {% for error in form.notes.errors %}<small>{{ error }}</small>{% endfor %}
                 </label>
-                <div class="payment-assurance">
-                    <strong>Paiement assiste, statut initial : En attente</strong>
-                    <p>Apres validation, vous recevrez un bouton WhatsApp avec le montant, le numero de commande et la methode choisie.</p>
-                </div>
                 <button class="button button-primary checkout-main-cta" type="submit">Finaliser la commande</button>
+                <p class="checkout-support-text">Rien n'est debite maintenant. Vous recevrez un bouton WhatsApp avec le montant et le numero de commande pour payer.</p>
                 </div>
             </form>
         </div>

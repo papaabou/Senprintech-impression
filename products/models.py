@@ -87,22 +87,3 @@ class ProductOptionChoice(models.Model):
 
     def __str__(self):
         return f"{self.option.name}: {self.label}"
-
-
-class ContactRequest(models.Model):
-    name = models.CharField(max_length=120)
-    email = models.EmailField()
-    phone = models.CharField(max_length=40, blank=True)
-    project_type = models.CharField(max_length=40)
-    message = models.TextField()
-    email_sent = models.BooleanField(default=False)
-    email_error = models.TextField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ["-created_at"]
-        verbose_name = "demande contact"
-        verbose_name_plural = "demandes contact"
-
-    def __str__(self):
-        return f"{self.name} - {self.email}"

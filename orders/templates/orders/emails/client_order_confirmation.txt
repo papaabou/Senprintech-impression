@@ -1,0 +1,14 @@
+Bonjour {{ order.full_name }},
+
+Votre commande SenPrinTech {{ order.order_number }} a bien ete enregistree.
+
+Resume :
+{% for entry in items %}- {{ entry.item.product.name }} x{{ entry.item.quantity }} ({{ entry.item.get_cost }} FCFA)
+{% endfor %}
+Total : {{ order.get_total_cost }} FCFA
+Livraison : {{ order.get_delivery_method_display }}
+Methode de paiement : {{ order.get_payment_method_display }}
+
+Il ne reste plus qu'a finaliser le paiement sur WhatsApp, notre equipe vous confirme rapidement les instructions Wave ou Orange Money.
+
+SenPrinTech

@@ -2,6 +2,8 @@ from decimal import Decimal
 
 from django import forms
 
+from ecommercesite.validators import validate_upload_file
+
 from .models import ProductOptionChoice
 
 
@@ -79,6 +81,10 @@ class ProductConfigurationForm(forms.Form):
                     label=option.name,
                     required=False,
                     help_text=option.help_text,
+                    validators=[validate_upload_file],
+                    widget=forms.FileInput(
+                        attrs={"accept": ".pdf,.jpg,.jpeg,.png,.webp,.ai,.eps,.psd,.svg,.doc,.docx,.txt"}
+                    ),
                 )
 
     @staticmethod

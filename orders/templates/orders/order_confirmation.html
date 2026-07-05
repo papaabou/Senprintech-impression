@@ -11,36 +11,35 @@
         <span class="is-active">4. Paiement WhatsApp</span>
     </div>
     <div class="payment-finalize-hero">
-        <p class="eyebrow">Paiement assiste</p>
-        <h1>Finaliser votre paiement</h1>
-        <p>Votre commande {{ order.order_number }} est bien creee. Envoyez la demande de paiement sur WhatsApp : notre equipe vous confirme rapidement les instructions Wave ou Orange Money.</p>
-        <div class="payment-key-grid">
+        <p class="eyebrow">Derniere etape</p>
+        <h1>Plus qu'une etape : payez sur WhatsApp</h1>
+        <p>Aucun paiement en ligne. Vous envoyez l'argent vous-meme sur Wave ou Orange Money, apres avoir recu nos instructions par WhatsApp.</p>
+        <div class="payment-key-grid payment-key-grid-compact">
             <div>
                 <span>Commande</span>
                 <strong>{{ order.order_number }}</strong>
             </div>
             <div>
-                <span>Montant total</span>
+                <span>Montant a payer</span>
                 <strong>{{ order.get_total_cost }} FCFA</strong>
-            </div>
-            <div>
-                <span>Methode choisie</span>
-                <strong>{{ order.get_payment_method_display }}</strong>
-            </div>
-            <div>
-                <span>Statut paiement</span>
-                <strong>{{ order.get_payment_status_display }}</strong>
             </div>
         </div>
         <div class="hero-actions">
-            <a href="{{ whatsapp_order_url }}" class="button button-primary whatsapp-pay-button" target="_blank" rel="noopener">Payer sur WhatsApp</a>
+            <a href="{{ whatsapp_order_url }}" class="button button-primary whatsapp-pay-button" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347z"></path>
+                    <path d="M12.043 2C6.517 2 2.03 6.477 2.03 11.99a9.96 9.96 0 0 0 1.36 5.03L2 22l5.11-1.34a10.02 10.02 0 0 0 4.933 1.257h.005c5.526 0 10.013-4.477 10.013-9.99C22.06 6.477 17.573 2 12.043 2zm5.868 15.815a8.31 8.31 0 0 1-5.868 2.428h-.004a8.34 8.34 0 0 1-4.24-1.16l-.304-.18-3.033.796.81-2.955-.198-.303a8.29 8.29 0 0 1-1.276-4.451c0-4.588 3.734-8.318 8.328-8.318 2.225 0 4.317.867 5.89 2.44a8.263 8.263 0 0 1 2.435 5.883c0 4.588-3.734 8.318-8.54 8.318z"></path>
+                </svg>
+                Payer sur WhatsApp
+            </a>
             <a href="{% url 'accounts:order_detail' order.id %}" class="button button-secondary-dark">Voir dans mon compte</a>
         </div>
-        <div class="checkout-trust-list is-on-dark">
-            <p>Paiement non debite automatiquement</p>
-            <p>Confirmation humaine par SenPrinTech</p>
-            <p>Support disponible sur WhatsApp</p>
-        </div>
+        <p class="payment-next-steps-label">Comment ca marche :</p>
+        <ol class="payment-next-steps">
+            <li><span>1</span>Vous cliquez sur le bouton vert : WhatsApp s'ouvre avec un message deja pret, contenant votre commande et le montant.</li>
+            <li><span>2</span>Notre equipe vous envoie le numero Wave ou Orange Money pour payer {{ order.get_total_cost }} FCFA.</li>
+            <li><span>3</span>Vous envoyez l'argent depuis votre application, puis nous confirmons : votre commande passe au statut "Paye".</li>
+        </ol>
     </div>
 
     <div class="checkout-layout">

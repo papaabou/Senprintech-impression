@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 
+from ecommercesite.validators import validate_upload_file
 from products.models import Product
 
 
@@ -90,7 +91,12 @@ class Order(models.Model):
         blank=True,
         null=True,
     )
-    proof_file = models.FileField(upload_to="order_proofs", blank=True, null=True)
+    proof_file = models.FileField(
+        upload_to="order_proofs",
+        blank=True,
+        null=True,
+        validators=[validate_upload_file],
+    )
     payment_status = models.CharField(
         max_length=20,
         choices=PAYMENT_STATUS_CHOICES,
@@ -148,7 +154,12 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)
     selected_options = models.JSONField(default=list, blank=True)
-    uploaded_file = models.FileField(upload_to="order_uploads", blank=True, null=True)
+    uploaded_file = models.FileField(
+        upload_to="order_uploads",
+        blank=True,
+        null=True,
+        validators=[validate_upload_file],
+    )
 
     def get_unit_price(self):
         return self.price
@@ -159,8 +170,8 @@ class OrderItem(models.Model):
 
 class OrderStatusHistory(models.Model):
     order = models.ForeignKey(Order, related_name="status_history", on_delete=models.CASCADE)
-    previous_status = models.CharField(max_length=30, blank=True)
-    new_status = models.CharField(max_length=30)
+    previous_status = models.CharField(max_length=30, blank=True, choices=Order.STATUS_CHOICES)
+    new_status = models.CharField(max_length=30, choices=Order.STATUS_CHOICES)
     note = models.CharField(max_length=250, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -7,7 +7,8 @@ from django.urls import reverse
 
 from cart.models import CartItem
 from products.forms import ProductConfigurationForm
-from products.models import ContactRequest, Product
+from products.models import Product
+from quotes.models import ContactRequest
 
 
 class ProductPricingTests(TestCase):

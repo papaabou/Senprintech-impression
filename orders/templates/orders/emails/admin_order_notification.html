@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<body style="margin:0;background:#f6f6f6;font-family:Arial,sans-serif;color:#111;">
+  <div style="max-width:680px;margin:0 auto;padding:28px;">
+    <div style="background:#080808;color:#fff;padding:24px;border-radius:10px 10px 0 0;">
+      <p style="margin:0 0 8px;color:#d4af37;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">SenPrinTech</p>
+      <h1 style="margin:0;font-size:24px;">Nouvelle commande {{ order.order_number }}</h1>
+    </div>
+    <div style="background:#fff;padding:24px;border:1px solid #eee;border-top:0;border-radius:0 0 10px 10px;">
+      <h2 style="margin:0 0 14px;font-size:18px;">Client</h2>
+      <p><strong>Nom :</strong> {{ order.full_name }}</p>
+      <p><strong>Email :</strong> {{ order.email }}</p>
+      <p><strong>Telephone :</strong> {{ order.phone|default:"-" }}</p>
+      <p><strong>Adresse :</strong> {{ order.address }}</p>
+      <p><strong>Ville :</strong> {{ order.city|default:"-" }}</p>
+      <p><strong>Livraison :</strong> {{ order.get_delivery_method_display }}</p>
+      <p><strong>Paiement :</strong> {{ order.get_payment_method_display }} ({{ order.get_payment_status_display }})</p>
+
+      <h2 style="margin:24px 0 14px;font-size:18px;">Articles</h2>
+      {% for entry in items %}
+      <p style="margin:0 0 4px;"><strong>{{ entry.item.product.name }}</strong> x{{ entry.item.quantity }} — {{ entry.item.get_cost }} FCFA</p>
+      {% if entry.item.selected_options %}
+      <ul style="margin:0 0 8px;padding-left:18px;color:#444;">
+        {% for option in entry.item.selected_options %}
+        <li>{{ option.name }} : {{ option.label|default:option.value }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% if entry.file_url %}
+      <p style="margin:0 0 14px;"><a href="{{ entry.file_url }}" style="color:#9f7625;">Ouvrir le fichier</a></p>
+      {% endif %}
+      {% endfor %}
+
+      <p style="font-size:16px;margin-top:18px;"><strong>Total : {{ order.get_total_cost }} FCFA</strong></p>
+
+      {% if order.notes %}
+      <h2 style="margin:24px 0 14px;font-size:18px;">Notes client</h2>
+      <p style="line-height:1.6;">{{ order.notes|linebreaksbr }}</p>
+      {% endif %}
+
+      <p style="margin-top:24px;"><a href="{{ admin_url }}" style="color:#9f7625;">Voir la commande dans l'admin</a></p>
+    </div>
+  </div>
+</body>
+</html>

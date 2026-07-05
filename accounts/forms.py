@@ -39,9 +39,21 @@ class CustomerRegistrationForm(UserCreationForm):
                 }
             )
 
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        existing = User.objects.filter(username__iexact=username)
+        if self.instance.pk:
+            existing = existing.exclude(pk=self.instance.pk)
+        if existing.exists():
+            raise forms.ValidationError("Un utilisateur avec ce nom existe déjà.")
+        return username
+
     def clean_email(self):
         email = self.cleaned_data["email"].strip().lower()
-        if User.objects.filter(email__iexact=email).exists():
+        existing = User.objects.filter(email__iexact=email)
+        if self.instance.pk:
+            existing = existing.exclude(pk=self.instance.pk)
+        if existing.exists():
             raise forms.ValidationError("Un compte existe déjà avec cette adresse email.")
         return email
 

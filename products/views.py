@@ -10,8 +10,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
 
+from quotes.models import ContactRequest
+
 from .forms import ContactForm, ProductConfigurationForm
-from .models import Category, ContactRequest, Product
+from .models import Category, Product
 
 
 logger = logging.getLogger(__name__)

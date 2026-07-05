@@ -10,12 +10,12 @@
             <p>Supports commerciaux, brochures, packaging leger et impressions personnalisees pour vos campagnes d'entreprise.</p>
             <div class="quote-hero-actions">
                 <a href="#quote-form" class="button button-primary">Demander un devis</a>
-                <a href="#quote-form" class="button button-secondary-dark">Envoyer mes fichiers</a>
+                <a href="#id_uploaded_file" class="button button-secondary-dark quote-jump-file">Envoyer mes fichiers</a>
             </div>
             <div class="auth-benefits">
                 <span>Devis personnalise</span>
                 <span>Fichiers logo</span>
-                <span>Suivi admin</span>
+                <span>Suivi de vos devis</span>
             </div>
         </div>
 
@@ -64,4 +64,18 @@
         </aside>
     </div>
 </section>
+
+<script>
+    document.querySelector('.quote-jump-file')?.addEventListener('click', function () {
+        window.setTimeout(function () {
+            const fileField = document.getElementById('id_uploaded_file');
+            if (!fileField) return;
+            fileField.focus({ preventScroll: true });
+            fileField.classList.add('quote-jump-target-highlight');
+            fileField.addEventListener('animationend', function () {
+                fileField.classList.remove('quote-jump-target-highlight');
+            }, { once: true });
+        }, 450);
+    });
+</script>
 {%endblock%}

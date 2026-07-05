@@ -67,6 +67,10 @@
         </div>
         <button type="submit" class="button button-primary checkout-main-cta">Ajouter au panier</button>
         <a href="{{ product_whatsapp_url }}" class="button whatsapp-product-button" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347z"></path>
+                <path d="M12.043 2C6.517 2 2.03 6.477 2.03 11.99a9.96 9.96 0 0 0 1.36 5.03L2 22l5.11-1.34a10.02 10.02 0 0 0 4.933 1.257h.005c5.526 0 10.013-4.477 10.013-9.99C22.06 6.477 17.573 2 12.043 2zm5.868 15.815a8.31 8.31 0 0 1-5.868 2.428h-.004a8.34 8.34 0 0 1-4.24-1.16l-.304-.18-3.033.796.81-2.955-.198-.303a8.29 8.29 0 0 1-1.276-4.451c0-4.588 3.734-8.318 8.328-8.318 2.225 0 4.317.867 5.89 2.44a8.263 8.263 0 0 1 2.435 5.883c0 4.588-3.734 8.318-8.54 8.318z"></path>
+            </svg>
             Demander conseil sur WhatsApp
         </a>
     <div id="cart-notification" class="cart-notification" role="status" aria-live="polite">
@@ -76,17 +80,37 @@
     </div>
     </form>
     <div class="detail-notes">
-        <p>BAT possible avant production</p>
-        <p>Retrait ou livraison locale</p>
-        <p>Support pro et particuliers</p>
+        <p>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            BAT possible avant production
+        </p>
+        <p>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3z"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+            Retrait ou livraison locale
+        </p>
+        <p>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H7l-3 3z"/></svg>
+            Support pro et particuliers
+        </p>
     </div>
 </div>
+</div>
+
+<div class="sticky-buybar" id="sticky-buybar">
+    <div class="sticky-buybar-inner">
+        <div class="sticky-buybar-info">
+            <span class="sticky-buybar-name">{{ product.name }}</span>
+            <strong class="sticky-buybar-price"><span id="sticky-price">{{ product.get_base_price|floatformat:0 }}</span> FCFA</strong>
+        </div>
+        <button type="submit" form="add-to-cart-form" class="button button-primary">Ajouter au panier</button>
+    </div>
 </div>
 
 <script>
     const productForm = document.getElementById('add-to-cart-form');
     const configuredPrice = document.getElementById('configured-price');
     const previewPrice = document.getElementById('preview-price');
+    const stickyPrice = document.getElementById('sticky-price');
     const lineTotal = document.getElementById('line-total');
     const cartQuantity = document.getElementById('cart-quantity');
     const optionSummary = document.getElementById('option-summary');
@@ -125,6 +149,7 @@
         const quantity = Math.max(1, Number(cartQuantity?.value || 1));
         if (configuredPrice) configuredPrice.textContent = formatPrice(price);
         if (previewPrice) previewPrice.textContent = formatPrice(price);
+        if (stickyPrice) stickyPrice.textContent = formatPrice(price);
         if (lineTotal) lineTotal.textContent = formatPrice(price * quantity);
     }
 
@@ -154,6 +179,9 @@
             if (data.success){
                 messageElement.textContent = `Quantite: ${data.quantity} | Total ligne: ${data.line_total} FCFA`;
                 notification.classList.add('is-visible');
+                document.querySelectorAll('.cart-badge').forEach((badge) => {
+                    badge.textContent = data.cart_item_count;
+                });
             }else{
                 messageElement.textContent = data.message || "Impossible d'ajouter ce produit.";
                 notification.classList.add('is-visible', 'is-error');
@@ -165,6 +193,17 @@
             notification.classList.add('is-visible', 'is-error');
         })
     })
+
+    const stickyBuybar = document.getElementById('sticky-buybar');
+    const mainCta = document.querySelector('.checkout-main-cta');
+    if (stickyBuybar && mainCta && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                stickyBuybar.classList.toggle('is-visible', !entry.isIntersecting);
+            });
+        }, { threshold: 0 });
+        observer.observe(mainCta);
+    }
 </script>
     {%endblock%}
 

@@ -50,7 +50,7 @@ class QuoteRequestForm(forms.ModelForm):
             "desired_deadline": forms.TextInput(attrs={"placeholder": "Ex: sous 7 jours"}),
             "estimated_budget": forms.NumberInput(attrs={"placeholder": "Ex: 250000", "min": 0}),
             "message": forms.Textarea(attrs={"rows": 5, "placeholder": "Detaillez le besoin, supports, formats, finitions..."}),
-            "uploaded_file": forms.FileInput(attrs={"accept": ".pdf,.ai,.psd,.doc,.docx,.jpg,.jpeg,.png"}),
+            "uploaded_file": forms.FileInput(attrs={"accept": ".pdf,.ai,.psd,.eps,.svg,.doc,.docx,.jpg,.jpeg,.png,.webp,.txt"}),
         }
 
     def __init__(self, *args, **kwargs):

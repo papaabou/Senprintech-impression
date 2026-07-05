@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import QuoteRequest
+from .models import ContactRequest, QuoteRequest
 
 
 @admin.register(QuoteRequest)
@@ -28,3 +28,11 @@ class QuoteRequestAdmin(admin.ModelAdmin):
         )
 
     uploaded_file_link.short_description = "Fichier client"
+
+
+@admin.register(ContactRequest)
+class ContactRequestAdmin(admin.ModelAdmin):
+    list_display = ["name", "email", "phone", "project_type", "email_sent", "created_at"]
+    list_filter = ["project_type", "email_sent", "created_at"]
+    search_fields = ["name", "email", "phone", "message"]
+    readonly_fields = ["created_at"]

@@ -3,5 +3,5 @@
 
 {% block extrastyle %}
 {{ block.super }}
-<link rel="stylesheet" href="{% static 'css/admin_senprintech.css' %}">
+<link rel="stylesheet" href="{% static 'css/admin_senprintech.css' %}?v={{ static_version }}">
 {% endblock %}
