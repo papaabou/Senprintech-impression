@@ -1,30 +1,22 @@
-# E-Commerce Site with Django & TailwindCSS
+# SenPrinTech
 
+Site e-commerce Django pour SenPrinTech, service d'impression digitale (flyers, cartes de visite, textile, objets personnalises, impression entreprise).
 
-This repository contains the code for a functional e-commerce website built with Django and styled using TailwindCSS as shown in my Tutorial [Video on Youtube](https://youtu.be/GUaUVhEBgyk):
+## Fonctionnalites
 
-## Features
+- Catalogue produits avec options configurables (format, papier, quantite, fichiers client...)
+- Panier et tunnel de commande avec paiement assiste Wave / Orange Money via WhatsApp
+- Comptes clients avec verification email et suivi de commandes/devis
+- Demande de devis entreprise et formulaire de contact, avec notifications email automatiques
+- Panneau d'administration personnalise pour gerer produits, commandes, devis et demandes de contact
 
-- **Django & TailwindCSS Integration**: Set up Django with TailwindCSS for easy styling.
-- **Product Catalog**: Manage products efficiently, with the option to sort by categories.
-- **Shopping Cart**: Implement a dynamic cart allowing users to add and remove items.
-- **Checkout Process**: Provide a checkout experience, including order confirmation.
-- **Order Management**: Administer customer orders from the backend.
-- **Admin Interface**: Use Django’s admin panel for management of products, categories, and orders.
+## Stack technique
 
-## Tutorial:
+- Django 5.1
+- SQLite en developpement, PostgreSQL en production
+- WhiteNoise pour les fichiers statiques
+- Gunicorn pour le serveur de production
 
-[![Watch the Tutorial](https://img.youtube.com/vi/GUaUVhEBgyk/0.jpg)](https://www.youtube.com/watch?v=GUaUVhEBgyk)
+## Deploiement
 
-## Support
-
-If you found this project helpful, consider becoming a patron on my Patreon:
-
-[![Support me on Patreon](https://img.shields.io/badge/Support%20me%20on-Patreon-orange.svg)](https://www.patreon.com/PikoCanFly)
-
-Your contributions will help me continue creating helpful content. Thank you for your support!
-
-## Contributing
-
-This project was made to help spread knowledge. If you'd like to contribute, feel free to fork the repository, make your changes, and submit a pull request.
-
+Voir [DEPLOY_RENDER.md](DEPLOY_RENDER.md) pour la procedure complete de deploiement sur Render.
