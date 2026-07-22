@@ -1,6 +1,7 @@
 ﻿asgiref==3.8.1
 dj-database-url==2.3.0
 Django==5.1.4
+django-anymail[brevo]==11.1
 gunicorn==23.0.0
 pillow==11.0.0
 psycopg[binary]==3.2.13

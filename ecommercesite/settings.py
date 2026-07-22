@@ -88,6 +88,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'anymail',
     'accounts',
     'quotes',
     'products',
@@ -222,10 +223,20 @@ CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "contact@senprintech.com")
 CONTACT_EMAIL_SUBJECT = "Demande d'informations SenPrinTech"
 CONTACT_EMAIL_BODY = "Bonjour SenPrinTech, je souhaite avoir des informations sur vos services d'impression."
 
-EMAIL_BACKEND = os.environ.get(
-    "EMAIL_BACKEND",
-    "django.core.mail.backends.smtp.EmailBackend",
-)
+BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
+
+if BREVO_API_KEY:
+    # Sends over HTTPS via the Brevo API instead of a raw SMTP socket.
+    # Render's free web service plan blocks outbound SMTP connections
+    # ("Network is unreachable"), but plain HTTPS requests work fine.
+    EMAIL_BACKEND = "anymail.backends.brevo.EmailBackend"
+    ANYMAIL = {"BREVO_API_KEY": BREVO_API_KEY}
+else:
+    EMAIL_BACKEND = os.environ.get(
+        "EMAIL_BACKEND",
+        "django.core.mail.backends.smtp.EmailBackend",
+    )
+
 EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
 EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "587"))
 EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")

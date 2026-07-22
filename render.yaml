@@ -28,23 +28,11 @@ services:
         value: "True"
       - key: ACCOUNT_EMAIL_VERIFICATION_REQUIRED
         value: "True"
-      - key: EMAIL_BACKEND
-        value: "django.core.mail.backends.smtp.EmailBackend"
-      - key: EMAIL_HOST
-        value: "smtp.gmail.com"
-      - key: EMAIL_PORT
-        value: "587"
-      - key: EMAIL_USE_TLS
-        value: "true"
-      - key: EMAIL_USE_SSL
-        value: "false"
       - key: DEFAULT_FROM_EMAIL
         value: "SenPrinTech <papeaboumbaye@gmail.com>"
       - key: QUOTE_ADMIN_EMAIL
         value: "papeaboumbaye@gmail.com"
-      - key: EMAIL_HOST_USER
-        sync: false
-      - key: EMAIL_HOST_PASSWORD
+      - key: BREVO_API_KEY
         sync: false
       - key: ADMIN_USERNAME
         value: "admin"
