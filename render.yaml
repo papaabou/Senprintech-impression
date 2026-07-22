@@ -2,7 +2,7 @@ services:
   - type: web
     name: senprintech
     runtime: python
-    plan: starter
+    plan: free
     buildCommand: "bash build.sh"
     startCommand: "bash start.sh"
     envVars:
@@ -28,8 +28,6 @@ services:
         value: "True"
       - key: ACCOUNT_EMAIL_VERIFICATION_REQUIRED
         value: "True"
-      - key: MEDIA_ROOT
-        value: "/var/data/mediafiles"
       - key: EMAIL_BACKEND
         value: "django.core.mail.backends.smtp.EmailBackend"
       - key: EMAIL_HOST
@@ -58,11 +56,7 @@ services:
         fromDatabase:
           name: senprintech-db
           property: connectionString
-    disk:
-      name: senprintech-media
-      mountPath: /var/data
-      sizeGB: 1
 
 databases:
   - name: senprintech-db
-    plan: starter
+    plan: free
