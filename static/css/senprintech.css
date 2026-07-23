@@ -5674,7 +5674,7 @@ body.site-body {
     }
 
     .menu-button {
-        display: inline-flex !important;
+        display: grid !important;
         flex: 0 0 38px;
     }
 
@@ -5835,6 +5835,7 @@ body.site-body {
         right: 14px;
         top: 84px;
         width: auto;
+        transform: none;
     }
 
     .site-message {
