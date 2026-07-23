@@ -5087,6 +5087,7 @@ body.site-body {
 .user-icon {
     height: 20px;
     width: 20px;
+    pointer-events: none;
 }
 
 .user-menu-panel {
@@ -5094,7 +5095,7 @@ body.site-body {
     border: 1px solid rgba(15, 23, 42, .10);
     border-radius: 10px;
     box-shadow: 0 18px 50px rgba(15, 23, 42, .16);
-    display: grid;
+    display: none;
     gap: 4px;
     min-width: 190px;
     padding: 8px;
@@ -5102,6 +5103,10 @@ body.site-body {
     right: 0;
     top: calc(100% + 12px);
     z-index: 80;
+}
+
+.user-menu[open] .user-menu-panel {
+    display: grid;
 }
 
 .user-menu-panel a {
@@ -5154,8 +5159,7 @@ body.site-body {
     }
 
     .user-menu-panel {
-        left: 0;
-        right: auto;
+        width: min(240px, calc(100vw - 48px));
     }
 
     .cart-link {
@@ -5718,8 +5722,6 @@ body.site-body {
     }
 
     .user-menu-panel {
-        left: 0;
-        right: auto;
         width: min(240px, calc(100vw - 48px));
     }
 
