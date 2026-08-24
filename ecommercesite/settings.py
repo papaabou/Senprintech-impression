@@ -101,9 +101,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'cloudinary_storage',
     'django.contrib.staticfiles',
-    'cloudinary',
     'anymail',
     'accounts',
     'quotes',
@@ -221,6 +219,10 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+# django-cloudinary-storage's collectstatic override still reads the
+# legacy setting directly and crashes without it, even though STORAGES
+# above is what Django itself actually uses.
+STATICFILES_STORAGE = STORAGES["staticfiles"]["BACKEND"]
 
 CLOUDINARY_URL = os.environ.get("CLOUDINARY_URL", "")
 if CLOUDINARY_URL:
