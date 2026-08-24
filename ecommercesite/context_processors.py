@@ -26,6 +26,9 @@ def whatsapp(request):
         "WHATSAPP_GENERAL_URL": f"https://wa.me/{settings.WHATSAPP_NUMBER}?text={quote(message)}",
         "CONTACT_EMAIL": settings.CONTACT_EMAIL,
         "CONTACT_EMAIL_URL": f"mailto:{settings.CONTACT_EMAIL}?subject={quote(subject)}&body={quote(body)}",
+        "CONTACT_PHONE_DISPLAY": settings.CONTACT_PHONE_DISPLAY,
+        "CONTACT_PHONE_SECONDARY_DISPLAY": settings.CONTACT_PHONE_SECONDARY_DISPLAY,
+        "CONTACT_ADDRESS": settings.CONTACT_ADDRESS,
     }
 
 

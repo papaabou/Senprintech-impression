@@ -215,13 +215,16 @@ LOGIN_REDIRECT_URL = "accounts:account_home"
 LOGOUT_REDIRECT_URL = "products:product_list"
 ACCOUNT_EMAIL_VERIFICATION_REQUIRED = env_bool("ACCOUNT_EMAIL_VERIFICATION_REQUIRED", True)
 
-WHATSAPP_NUMBER = "221710460959"
-WHATSAPP_DISPLAY_NUMBER = "+221 71 046 09 59"
+WHATSAPP_NUMBER = "221710353207"
+WHATSAPP_DISPLAY_NUMBER = "+221 71 035 32 07"
 WHATSAPP_GENERAL_MESSAGE = "Bonjour SenPrinTech, je souhaite avoir des informations sur vos services d'impression."
 
-CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "contact@senprintech.com")
+CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "senprinttech@gmail.com")
 CONTACT_EMAIL_SUBJECT = "Demande d'informations SenPrinTech"
 CONTACT_EMAIL_BODY = "Bonjour SenPrinTech, je souhaite avoir des informations sur vos services d'impression."
+CONTACT_PHONE_DISPLAY = "+221 71 035 32 07"
+CONTACT_PHONE_SECONDARY_DISPLAY = "+221 78 011 65 79"
+CONTACT_ADDRESS = "Koungheul Escale, Sénégal"
 
 BREVO_API_KEY = os.environ.get("BREVO_API_KEY", "")
 
