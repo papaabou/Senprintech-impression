@@ -2,6 +2,8 @@
 dj-database-url==2.3.0
 Django==5.1.4
 django-anymail[brevo]==11.1
+django-cloudinary-storage==0.3.0
+cloudinary==1.41.0
 gunicorn==23.0.0
 pillow==11.0.0
 psycopg[binary]==3.2.13
