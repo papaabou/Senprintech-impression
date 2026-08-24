@@ -3,7 +3,21 @@
   "builds": [
     {
       "src": "api/index.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": [
+          "accounts/**",
+          "cart/**",
+          "orders/**",
+          "products/**",
+          "quotes/**",
+          "ecommercesite/**",
+          "templates/**",
+          "static/**",
+          "staticfiles/**",
+          "manage.py"
+        ]
+      }
     }
   ],
   "routes": [
