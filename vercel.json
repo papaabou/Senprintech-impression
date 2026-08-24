@@ -15,6 +15,7 @@
           "templates/**",
           "static/**",
           "staticfiles/**",
+          "mediafiles/products/**",
           "manage.py"
         ]
       }

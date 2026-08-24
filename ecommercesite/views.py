@@ -1,9 +1,14 @@
 from pathlib import Path
 
 from django.conf import settings
-from django.http import Http404
+from django.contrib.admin.views.decorators import staff_member_required
+from django.core.files.base import File
+from django.core.files.storage import default_storage
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views.static import serve
+
+from products.models import Product
 
 
 LEGAL_PAGES = {
@@ -35,3 +40,26 @@ def media_file(request, path):
             return serve(request, path, document_root=bundled_media_root)
 
     raise Http404("Media file not found")
+
+
+@staff_member_required
+def resync_product_images(request):
+    """One-off: push the repo-bundled seed images into CLOUDINARY_URL storage.
+
+    seed_senprintech only sets the image field's string path; it never
+    uploads bytes, so switching to Cloudinary storage left every seeded
+    product pointing at an asset that doesn't exist there yet.
+    """
+    lines = []
+    for product in Product.objects.exclude(image=""):
+        local_path = settings.BASE_DIR / "mediafiles" / product.image.name
+        if not local_path.exists():
+            lines.append(f"SKIP (no local file): {product.name} -> {product.image.name}")
+            continue
+        if default_storage.exists(product.image.name):
+            lines.append(f"SKIP (already on Cloudinary): {product.name} -> {product.image.name}")
+            continue
+        with open(local_path, "rb") as f:
+            default_storage.save(product.image.name, File(f))
+        lines.append(f"UPLOADED: {product.name} -> {product.image.name}")
+    return HttpResponse("\n".join(lines) or "No products with images found.", content_type="text/plain")
