@@ -53,6 +53,13 @@ def env_int(name, default):
     return int(value)
 
 
+def env_str(name, default):
+    value = os.environ.get(name)
+    if not value or not value.strip():
+        return default
+    return value
+
+
 load_env_file(BASE_DIR / ".env")
 
 
@@ -251,7 +258,7 @@ WHATSAPP_NUMBER = "221710353207"
 WHATSAPP_DISPLAY_NUMBER = "+221 71 035 32 07"
 WHATSAPP_GENERAL_MESSAGE = "Bonjour SenPrinTech, je souhaite avoir des informations sur vos services d'impression."
 
-CONTACT_EMAIL = os.environ.get("CONTACT_EMAIL", "senprinttech@gmail.com")
+CONTACT_EMAIL = env_str("CONTACT_EMAIL", "senprinttech@gmail.com")
 CONTACT_EMAIL_SUBJECT = "Demande d'informations SenPrinTech"
 CONTACT_EMAIL_BODY = "Bonjour SenPrinTech, je souhaite avoir des informations sur vos services d'impression."
 CONTACT_PHONE_DISPLAY = "+221 71 035 32 07"
@@ -279,11 +286,11 @@ EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
 EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", True)
 EMAIL_USE_SSL = env_bool("EMAIL_USE_SSL", False)
 EMAIL_TIMEOUT = env_int("EMAIL_TIMEOUT", 15)
-DEFAULT_FROM_EMAIL = os.environ.get(
+DEFAULT_FROM_EMAIL = env_str(
     "DEFAULT_FROM_EMAIL",
     f"SenPrinTech <{EMAIL_HOST_USER}>" if EMAIL_HOST_USER else "SenPrinTech <no-reply@senprintech.com>",
 )
-QUOTE_ADMIN_EMAIL = os.environ.get("QUOTE_ADMIN_EMAIL", "papeaboumbaye@gmail.com")
+QUOTE_ADMIN_EMAIL = env_str("QUOTE_ADMIN_EMAIL", "papeaboumbaye@gmail.com")
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SECURE_SSL_REDIRECT = env_bool("SECURE_SSL_REDIRECT", not DEBUG)
