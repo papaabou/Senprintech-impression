@@ -2,13 +2,13 @@
 <html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
-		<title>{%block title%}SenPrinTech - Impression digitale premium{%endblock%}</title>
+		<title>{%block title%}SenPrintTech - Impression digitale premium{%endblock%}</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		{% load static %}
 		<link href="{% static 'img/favicon.svg' %}" rel="icon" type="image/svg+xml" />
 		<link href="{% static 'dist/styles.css'%}?v={{ static_version }}" rel="stylesheet" />
 		<link href="{% static 'css/senprintech.css'%}?v={{ static_version }}" rel="stylesheet" />
-		<meta name="description" content="SenPrinTech imprime vos flyers, cartes de visite, t-shirts, mugs et stickers avec une finition professionnelle." />
+		<meta name="description" content="SenPrintTech imprime vos flyers, cartes de visite, t-shirts, mugs et stickers avec une finition professionnelle." />
 	</head>
 	<body class="site-body">
 		<header class="site-header">{% include "includes/nav.html" %}</header>
@@ -27,7 +27,7 @@
 		<footer id="footer" class="site-footer">
 			<div class="footer-inner">
 				<div>
-					<p class="footer-brand">SenPrinTech</p>
+					<p class="footer-brand">SenPrintTech</p>
 					<p>Impression digitale rapide pour marques, evenements et entrepreneurs.</p>
 				</div>
 				<div class="footer-links">
@@ -54,7 +54,7 @@
 					<a href="{{ WHATSAPP_GENERAL_URL }}" target="_blank" rel="noopener">WhatsApp {{ WHATSAPP_DISPLAY_NUMBER }}</a>
 					<span>{{ CONTACT_ADDRESS }}</span>
 				</div>
-				<p>&copy; 2026 SenPrinTech.</p>
+				<p>&copy; 2026 SenPrintTech.</p>
 			</div>
 		</footer>
 		{% include "includes/whatsapp_floating.html" %}

@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 def build_order_whatsapp_url(order):
     lines = [
-        "Bonjour SenPrinTech,",
+        "Bonjour SenPrintTech,",
         f"Je souhaite finaliser le paiement de la commande {order.order_number}",
         "",
         f"Nom : {order.full_name}",
@@ -59,7 +59,7 @@ def send_order_emails(request, order):
     client_text = render_to_string("orders/emails/client_order_confirmation.txt", context)
     client_html = render_to_string("orders/emails/client_order_confirmation.html", context)
     client_email = EmailMultiAlternatives(
-        subject=f"Votre commande SenPrinTech {order.order_number} est confirmee",
+        subject=f"Votre commande SenPrintTech {order.order_number} est confirmee",
         body=client_text,
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=[order.email],

@@ -1,4 +1,4 @@
-# Déploiement Render - SenPrinTech
+# Déploiement Render - SenPrintTech
 
 Ce projet Django est préparé pour Render avec PostgreSQL, Gunicorn, WhiteNoise, variables d'environnement, fichiers statiques et médias uploadés.
 
@@ -57,7 +57,7 @@ EMAIL_USE_TLS=true
 EMAIL_USE_SSL=false
 EMAIL_HOST_USER=papeaboumbaye@gmail.com
 EMAIL_HOST_PASSWORD=mot-de-passe-application-gmail
-DEFAULT_FROM_EMAIL=SenPrinTech <papeaboumbaye@gmail.com>
+DEFAULT_FROM_EMAIL=SenPrintTech <papeaboumbaye@gmail.com>
 QUOTE_ADMIN_EMAIL=papeaboumbaye@gmail.com
 ```
 
@@ -141,7 +141,7 @@ Puis ouvrir :
 https://votre-service.onrender.com/admin/
 ```
 
-## 7. Seed du catalogue SenPrinTech
+## 7. Seed du catalogue SenPrintTech
 
 Après migrations, lancer si nécessaire :
 

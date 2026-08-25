@@ -1,4 +1,4 @@
-Nouvelle commande SenPrinTech
+Nouvelle commande SenPrintTech
 
 Commande : {{ order.order_number }}
 Client : {{ order.full_name }}

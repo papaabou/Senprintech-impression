@@ -4,7 +4,7 @@ from products.models import DEFAULT_PRODUCT_PRICES, Category, Product, ProductOp
 
 
 class Command(BaseCommand):
-    help = "Create a clean SenPrinTech ecommerce catalogue."
+    help = "Create a clean SenPrintTech ecommerce catalogue."
 
     def handle(self, *args, **options):
         categories = [
@@ -192,6 +192,6 @@ class Command(BaseCommand):
 
         self.stdout.write(
             self.style.SUCCESS(
-                f"SenPrinTech catalogue ready: {created_count} created, {updated_count} updated."
+                f"SenPrintTech catalogue ready: {created_count} created, {updated_count} updated."
             )
         )

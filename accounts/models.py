@@ -57,7 +57,7 @@ class EmailVerificationCode(models.Model):
 
     def can_resend(self):
         if self.resend_count >= self.MAX_RESENDS:
-            return False, "Le nombre maximum de renvois est atteint. Contactez SenPrinTech si besoin."
+            return False, "Le nombre maximum de renvois est atteint. Contactez SenPrintTech si besoin."
         elapsed = timezone.now() - self.last_sent_at
         if elapsed.total_seconds() < self.RESEND_COOLDOWN_SECONDS:
             return False, "Veuillez patienter une minute avant de demander un nouveau code."

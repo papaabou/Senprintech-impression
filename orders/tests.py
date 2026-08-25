@@ -74,7 +74,7 @@ class AssistedPaymentCheckoutTests(TestCase):
         self.assertEqual(response.redirect_chain, [(reverse("orders:order_confirmation", args=[order.id]), 302)])
         self.assertContains(response, "Finaliser votre paiement")
         self.assertContains(response, "Payer sur WhatsApp")
-        self.assertContains(response, "wa.me/221710460959")
+        self.assertContains(response, "wa.me/221710353207")
         self.assertContains(response, order.order_number)
         self.assertContains(response, "Aucun fichier fourni")
         self.assertRegex(order.order_number, r"^SPT-\d{4}-\d{6}$")

@@ -256,11 +256,11 @@ ACCOUNT_EMAIL_VERIFICATION_REQUIRED = env_bool("ACCOUNT_EMAIL_VERIFICATION_REQUI
 
 WHATSAPP_NUMBER = "221710353207"
 WHATSAPP_DISPLAY_NUMBER = "+221 71 035 32 07"
-WHATSAPP_GENERAL_MESSAGE = "Bonjour SenPrinTech, je souhaite avoir des informations sur vos services d'impression."
+WHATSAPP_GENERAL_MESSAGE = "Bonjour SenPrintTech, je souhaite avoir des informations sur vos services d'impression."
 
 CONTACT_EMAIL = env_str("CONTACT_EMAIL", "senprinttech@gmail.com")
-CONTACT_EMAIL_SUBJECT = "Demande d'informations SenPrinTech"
-CONTACT_EMAIL_BODY = "Bonjour SenPrinTech, je souhaite avoir des informations sur vos services d'impression."
+CONTACT_EMAIL_SUBJECT = "Demande d'informations SenPrintTech"
+CONTACT_EMAIL_BODY = "Bonjour SenPrintTech, je souhaite avoir des informations sur vos services d'impression."
 CONTACT_PHONE_DISPLAY = "+221 71 035 32 07"
 CONTACT_PHONE_SECONDARY_DISPLAY = "+221 78 011 65 79"
 CONTACT_ADDRESS = "Koungheul Escale, Sénégal"
@@ -288,7 +288,7 @@ EMAIL_USE_SSL = env_bool("EMAIL_USE_SSL", False)
 EMAIL_TIMEOUT = env_int("EMAIL_TIMEOUT", 15)
 DEFAULT_FROM_EMAIL = env_str(
     "DEFAULT_FROM_EMAIL",
-    f"SenPrinTech <{EMAIL_HOST_USER}>" if EMAIL_HOST_USER else "SenPrinTech <no-reply@senprintech.com>",
+    f"SenPrintTech <{EMAIL_HOST_USER}>" if EMAIL_HOST_USER else "SenPrintTech <no-reply@senprintech.com>",
 )
 QUOTE_ADMIN_EMAIL = env_str("QUOTE_ADMIN_EMAIL", "papeaboumbaye@gmail.com")
 

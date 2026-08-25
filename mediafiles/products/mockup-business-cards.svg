@@ -5,7 +5,7 @@
   <rect x="455" y="150" width="360" height="135" rx="10" fill="#fff" stroke="#ddd" transform="rotate(8 635 217)"/>
   <rect x="435" y="172" width="360" height="135" rx="10" fill="#fafafa" stroke="#ddd" transform="rotate(8 615 239)"/>
   <circle cx="265" cy="410" r="24" fill="#c8a24a"/>
-  <text x="305" y="409" fill="#c8a24a" font-family="Arial" font-size="26" font-weight="700">SenPrinTech</text>
+  <text x="305" y="409" fill="#c8a24a" font-family="Arial" font-size="26" font-weight="700">SenPrintTech</text>
   <text x="535" y="232" fill="#111" font-family="Arial" font-size="25" font-weight="700">Business Cards</text>
   <text x="535" y="267" fill="#777" font-family="Arial" font-size="18">Premium print finish</text>
 </svg>

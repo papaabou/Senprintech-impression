@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{%block title%}Finaliser la commande - SenPrinTech{%endblock%}
+{%block title%}Finaliser la commande - SenPrintTech{%endblock%}
 
 {%block content%}
 <section class="account-page">
@@ -14,7 +14,7 @@
         <div class="account-card checkout-card">
             <p class="eyebrow">Commande securisee</p>
             <h1>Finaliser votre commande</h1>
-            <p class="account-muted">Verifiez vos informations avant validation. La commande sera creee d'abord, puis le paiement sera finalise avec SenPrinTech sur WhatsApp.</p>
+            <p class="account-muted">Verifiez vos informations avant validation. La commande sera creee d'abord, puis le paiement sera finalise avec SenPrintTech sur WhatsApp.</p>
             <form method="post" class="auth-form">
                 {% csrf_token %}
                 <div class="checkout-form-section">
@@ -117,7 +117,7 @@
                 <p>Total</p>
                 <strong>{{ cart.get_total_price }} FCFA</strong>
             </div>
-            <p class="checkout-note">Le paiement sera finalise manuellement sur WhatsApp avec SenPrinTech.</p>
+            <p class="checkout-note">Le paiement sera finalise manuellement sur WhatsApp avec SenPrintTech.</p>
         </aside>
     </div>
     </div>

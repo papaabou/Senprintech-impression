@@ -1,6 +1,6 @@
-# SenPrinTech
+# SenPrintTech
 
-Site e-commerce Django pour SenPrinTech, service d'impression digitale (flyers, cartes de visite, textile, objets personnalises, impression entreprise).
+Site e-commerce Django pour SenPrintTech, service d'impression digitale (flyers, cartes de visite, textile, objets personnalises, impression entreprise).
 
 ## Fonctionnalites
 

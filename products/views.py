@@ -72,7 +72,7 @@ def product_detail(request, id, slug):
     )
     configuration_form = ProductConfigurationForm(product=product)
     whatsapp_message = (
-        f"Bonjour SenPrinTech, je suis interesse par ce produit : {product.name}. "
+        f"Bonjour SenPrintTech, je suis interesse par ce produit : {product.name}. "
         "Pouvez-vous me conseiller ?"
     )
     return render(
@@ -91,7 +91,7 @@ def send_contact_emails(form):
     context = {
         "contact": data,
         "project_type_label": dict(form.fields["project_type"].choices).get(data["project_type"], data["project_type"]),
-        "site_name": "SenPrinTech",
+        "site_name": "SenPrintTech",
     }
 
     admin_text = render_to_string("products/emails/admin_contact_request.txt", context)
@@ -109,7 +109,7 @@ def send_contact_emails(form):
     client_text = render_to_string("products/emails/client_contact_confirmation.txt", context)
     client_html = render_to_string("products/emails/client_contact_confirmation.html", context)
     client_email = EmailMultiAlternatives(
-        subject="Votre message SenPrinTech a bien été reçu",
+        subject="Votre message SenPrintTech a bien été reçu",
         body=client_text,
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=[data["email"]],

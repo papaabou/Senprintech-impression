@@ -29,7 +29,7 @@ services:
       - key: ACCOUNT_EMAIL_VERIFICATION_REQUIRED
         value: "True"
       - key: DEFAULT_FROM_EMAIL
-        value: "SenPrinTech <papeaboumbaye@gmail.com>"
+        value: "SenPrintTech <papeaboumbaye@gmail.com>"
       - key: QUOTE_ADMIN_EMAIL
         value: "papeaboumbaye@gmail.com"
       - key: BREVO_API_KEY

@@ -29,12 +29,12 @@ def send_verification_email(request, user, code):
         "code": code,
         "verify_url": verify_url,
         "expires_minutes": EmailVerificationCode.EXPIRES_MINUTES,
-        "site_name": "SenPrinTech",
+        "site_name": "SenPrintTech",
     }
     text_body = render_to_string("accounts/emails/verify_email.txt", context)
     html_body = render_to_string("accounts/emails/verify_email.html", context)
     email = EmailMultiAlternatives(
-        subject="Confirmez votre compte SenPrinTech",
+        subject="Confirmez votre compte SenPrintTech",
         body=text_body,
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=[user.email],

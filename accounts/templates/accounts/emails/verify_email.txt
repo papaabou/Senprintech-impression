@@ -1,6 +1,6 @@
 Bonjour {{ user.first_name|default:user.username }},
 
-Votre code de confirmation SenPrinTech est :
+Votre code de confirmation SenPrintTech est :
 
 {{ code }}
 
@@ -9,6 +9,6 @@ Ce code expire dans {{ expires_minutes }} minutes.
 Vous pouvez saisir ce code ici :
 {{ verify_url }}
 
-Si vous n'avez pas créé de compte SenPrinTech, ignorez cet email.
+Si vous n'avez pas créé de compte SenPrintTech, ignorez cet email.
 
-SenPrinTech
+SenPrintTech

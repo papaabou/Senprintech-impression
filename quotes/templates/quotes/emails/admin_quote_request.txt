@@ -1,4 +1,4 @@
-Nouvelle demande de devis entreprise SenPrinTech
+Nouvelle demande de devis entreprise SenPrintTech
 
 Entreprise : {{ quote.company_name }}
 Contact : {{ quote.contact_name }}

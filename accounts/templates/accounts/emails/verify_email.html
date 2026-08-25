@@ -3,16 +3,16 @@
 <body style="margin:0;background:#f6f6f6;font-family:Arial,sans-serif;color:#111;">
   <div style="max-width:640px;margin:0 auto;padding:28px;">
     <div style="background:#080808;color:#fff;padding:26px;border-radius:10px 10px 0 0;">
-      <p style="margin:0 0 8px;color:#d4af37;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">SenPrinTech</p>
+      <p style="margin:0 0 8px;color:#d4af37;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;">SenPrintTech</p>
       <h1 style="margin:0;font-size:24px;">Confirmez votre compte</h1>
     </div>
     <div style="background:#fff;padding:26px;border:1px solid #eee;border-top:0;border-radius:0 0 10px 10px;">
       <p>Bonjour {{ user.first_name|default:user.username }},</p>
-      <p style="line-height:1.6;">Entrez le code ci-dessous pour confirmer votre adresse email et activer votre compte SenPrinTech.</p>
+      <p style="line-height:1.6;">Entrez le code ci-dessous pour confirmer votre adresse email et activer votre compte SenPrintTech.</p>
       <p style="margin:24px 0;padding:18px;background:#080808;color:#d4af37;border-radius:8px;text-align:center;font-size:34px;font-weight:800;letter-spacing:.18em;">{{ code }}</p>
       <p>Ce code expire dans {{ expires_minutes }} minutes.</p>
       <p><a href="{{ verify_url }}" style="color:#9f7625;font-weight:700;">Ouvrir la page de vérification</a></p>
-      <p style="margin-top:24px;color:#555;">Si vous n'avez pas créé de compte SenPrinTech, ignorez cet email.</p>
+      <p style="margin-top:24px;color:#555;">Si vous n'avez pas créé de compte SenPrintTech, ignorez cet email.</p>
     </div>
   </div>
 </body>

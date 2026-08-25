@@ -1,6 +1,6 @@
 Bonjour {{ quote.contact_name }},
 
-Votre demande de devis SenPrinTech a bien ete recue.
+Votre demande de devis SenPrintTech a bien ete recue.
 
 Resume de votre demande :
 Entreprise : {{ quote.company_name }}
@@ -12,4 +12,4 @@ Delai souhaite : {{ quote.desired_deadline }}
 
 Notre equipe revient vers vous rapidement avec les prochaines etapes.
 
-SenPrinTech
+SenPrintTech

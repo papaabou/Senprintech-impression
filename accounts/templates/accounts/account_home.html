@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{%block title%}Mon compte - SenPrinTech{%endblock%}
+{%block title%}Mon compte - SenPrintTech{%endblock%}
 
 {%block content%}
 <section class="account-page">
@@ -8,7 +8,7 @@
             <div>
                 <p class="eyebrow">Mon compte</p>
                 <h1>Bonjour {{ request.user.first_name|default:request.user.username }}.</h1>
-                <p>Votre espace pour suivre vos commandes SenPrinTech et retrouver vos fichiers.</p>
+                <p>Votre espace pour suivre vos commandes SenPrintTech et retrouver vos fichiers.</p>
             </div>
             <a href="{% url 'accounts:order_list' %}" class="button button-secondary-dark">Voir toutes mes commandes</a>
         </div>

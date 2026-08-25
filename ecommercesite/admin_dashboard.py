@@ -28,8 +28,8 @@ def build_admin_dashboard_context():
 def install_admin_dashboard(site):
     original_index = site.index
     site.index_template = "admin/senprintech_index.html"
-    site.site_header = "SenPrinTech Admin"
-    site.site_title = "SenPrinTech"
+    site.site_header = "SenPrintTech Admin"
+    site.site_title = "SenPrintTech"
     site.index_title = "Gestion impression"
 
     def index(request, extra_context=None):

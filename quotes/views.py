@@ -17,7 +17,7 @@ def send_quote_emails(request, quote):
     context = {
         "quote": quote,
         "file_url": file_url,
-        "site_name": "SenPrinTech",
+        "site_name": "SenPrintTech",
     }
 
     admin_text = render_to_string("quotes/emails/admin_quote_request.txt", context)
@@ -35,7 +35,7 @@ def send_quote_emails(request, quote):
     client_text = render_to_string("quotes/emails/client_quote_confirmation.txt", context)
     client_html = render_to_string("quotes/emails/client_quote_confirmation.html", context)
     client_email = EmailMultiAlternatives(
-        subject="Votre demande de devis SenPrinTech a bien été reçue",
+        subject="Votre demande de devis SenPrintTech a bien été reçue",
         body=client_text,
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=[quote.email],

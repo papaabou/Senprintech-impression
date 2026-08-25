@@ -1,4 +1,4 @@
-Nouveau message depuis le formulaire contact SenPrinTech
+Nouveau message depuis le formulaire contact SenPrintTech
 
 Nom : {{ contact.name }}
 Email : {{ contact.email }}
