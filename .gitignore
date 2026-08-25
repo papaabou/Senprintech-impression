@@ -32,8 +32,8 @@ Thumbs.db
 *.egg-info
 
 # Build and Dist
-dist/
-!dist/styles.css
+/dist/
+!/dist/styles.css
 build/
 
 # Node.js

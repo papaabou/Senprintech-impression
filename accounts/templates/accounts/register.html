@@ -54,7 +54,7 @@
                     {{ form.password2 }}
                     {% for error in form.password2.errors %}<small>{{ error }}</small>{% endfor %}
                 </label>
-                <p class="password-note">Utilisez au moins 8 caracteres, avec un mot de passe pas trop proche de vos informations personnelles.</p>
+                <p class="password-note">Utilisez au moins 6 caracteres.</p>
                 <button class="button button-primary" type="submit">Creer mon compte</button>
             </form>
             <p class="account-switch">Déjà inscrit ? <a href="{% url 'accounts:login' %}">Se connecter</a></p>
