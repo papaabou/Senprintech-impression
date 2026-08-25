@@ -49,17 +49,19 @@ def resync_product_images(request):
     seed_senprintech only sets the image field's string path; it never
     uploads bytes, so switching to Cloudinary storage left every seeded
     product pointing at an asset that doesn't exist there yet.
+
+    Cloudinary's storage backend assigns its own public_id on upload
+    (it doesn't honor the requested name as-is), so the returned name
+    from save() -- not the original path -- is what must be stored.
     """
     lines = []
     for product in Product.objects.exclude(image=""):
-        local_path = settings.BASE_DIR / "mediafiles" / product.image.name
+        original_name = product.image.name
+        local_path = settings.BASE_DIR / "mediafiles" / original_name
         if not local_path.exists():
-            lines.append(f"SKIP (no local file): {product.name} -> {product.image.name}")
-            continue
-        if default_storage.exists(product.image.name):
-            lines.append(f"SKIP (already on Cloudinary): {product.name} -> {product.image.name}")
+            lines.append(f"SKIP (no local file): {product.name} -> {original_name}")
             continue
         with open(local_path, "rb") as f:
-            default_storage.save(product.image.name, File(f))
-        lines.append(f"UPLOADED: {product.name} -> {product.image.name}")
+            product.image.save(local_path.name, File(f), save=True)
+        lines.append(f"UPLOADED: {product.name} -> {original_name} => {product.image.name}")
     return HttpResponse("\n".join(lines) or "No products with images found.", content_type="text/plain")
