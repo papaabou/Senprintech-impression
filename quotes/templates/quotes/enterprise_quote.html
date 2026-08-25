@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {%block title%}Impression Entreprise - SenPrinTech{%endblock%}
 
 {%block content%}
@@ -20,7 +21,7 @@
         </div>
 
         <div class="quote-hero-visual">
-            <img src="/media/products/business-cards-hd.png" alt="Supports premium imprimes pour commandes entreprise">
+            <img src="{% static 'img/hero/business-cards-hd.png' %}" alt="Supports premium imprimes pour commandes entreprise">
             <div class="quote-stat-card">
                 <span class="quote-stat-label">Reponse estimee</span>
                 <strong>24-48h</strong>
