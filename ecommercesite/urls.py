@@ -37,7 +37,6 @@ urlpatterns = [
     path("cart/", include('cart.urls')),
     path("orders/", include("orders.urls")),
     path('', include('products.urls', namespace='products')),
-    path("internal/resync-product-images/", views.resync_product_images, name="resync_product_images"),
 ]
 
 if settings.DEBUG:
