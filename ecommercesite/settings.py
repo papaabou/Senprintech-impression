@@ -94,13 +94,18 @@ VERCEL_PROJECT_PRODUCTION_URL = os.environ.get("VERCEL_PROJECT_PRODUCTION_URL")
 if VERCEL_PROJECT_PRODUCTION_URL and VERCEL_PROJECT_PRODUCTION_URL not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(VERCEL_PROJECT_PRODUCTION_URL)
 
+CUSTOM_DOMAIN_HOSTS = ["senprinttech.com", "www.senprinttech.com"]
+for custom_host in CUSTOM_DOMAIN_HOSTS:
+    if custom_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(custom_host)
+
 CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS")
 if RENDER_EXTERNAL_HOSTNAME:
     render_origin = f"https://{RENDER_EXTERNAL_HOSTNAME}"
     if render_origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(render_origin)
 
-for vercel_host in (VERCEL_URL, VERCEL_PROJECT_PRODUCTION_URL):
+for vercel_host in (VERCEL_URL, VERCEL_PROJECT_PRODUCTION_URL, *CUSTOM_DOMAIN_HOSTS):
     if vercel_host:
         vercel_origin = f"https://{vercel_host}"
         if vercel_origin not in CSRF_TRUSTED_ORIGINS:
