@@ -11,9 +11,9 @@
         <span class="is-active">4. Paiement WhatsApp</span>
     </div>
     <div class="payment-finalize-hero">
-        <p class="eyebrow">Derniere etape</p>
+        <p class="eyebrow">Dernière etape</p>
         <h1>Plus qu'une etape : payez sur WhatsApp</h1>
-        <p>Aucun paiement en ligne. Vous envoyez l'argent vous-meme sur Wave ou Orange Money, apres avoir recu nos instructions par WhatsApp.</p>
+        <p>Aucun paiement en ligne. Vous envoyez l'argent vous-meme sur Wave ou Orange Money, après avoir reçu nos instructions par WhatsApp.</p>
         <div class="payment-key-grid payment-key-grid-compact">
             <div>
                 <span>Commande</span>
@@ -32,11 +32,13 @@
                 </svg>
                 Payer sur WhatsApp
             </a>
+            {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:order_detail' order.id %}" class="button button-secondary-dark">Voir dans mon compte</a>
+            {% endif %}
         </div>
         <p class="payment-next-steps-label">Comment ca marche :</p>
         <ol class="payment-next-steps">
-            <li><span>1</span>Vous cliquez sur le bouton vert : WhatsApp s'ouvre avec un message deja pret, contenant votre commande et le montant.</li>
+            <li><span>1</span>Vous cliquez sur le bouton vert : WhatsApp s'ouvre avec un message déjà pret, contenant votre commande et le montant.</li>
             <li><span>2</span>Notre equipe vous envoie le numero Wave ou Orange Money pour payer {{ order.get_total_cost }} FCFA.</li>
             <li><span>3</span>Vous envoyez l'argent depuis votre application, puis nous confirmons : votre commande passe au statut "Paye".</li>
         </ol>
@@ -90,10 +92,10 @@
                 <p><span>Adresse</span><strong>{{ order.address }}</strong></p>
                 <p><span>Ville</span><strong>{{ order.city|default:"-" }}</strong></p>
                 <p><span>Livraison</span><strong>{{ order.get_delivery_method_display }}</strong></p>
-                <p><span>Methode</span><strong>{{ order.get_payment_method_display }}</strong></p>
+                <p><span>Méthode</span><strong>{{ order.get_payment_method_display }}</strong></p>
                 <p><span>Paiement</span><strong>{{ order.get_payment_status_display }}</strong></p>
                 {% if order.proof_file %}
-                <p><span>BAT / apercu</span><strong><a href="{{ order.proof_file.url }}" target="_blank" rel="noopener">Voir le fichier</a></strong></p>
+                <p><span>BAT / aperçu</span><strong><a href="{{ order.proof_file.url }}" target="_blank" rel="noopener">Voir le fichier</a></strong></p>
                 {% endif %}
             </div>
             {% if order.notes %}

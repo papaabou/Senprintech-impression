@@ -14,7 +14,10 @@
         <div class="account-card checkout-card">
             <p class="eyebrow">Commande securisee</p>
             <h1>Finaliser votre commande</h1>
-            <p class="account-muted">Verifiez vos informations avant validation. La commande sera creee d'abord, puis le paiement sera finalise avec SenPrintTech sur WhatsApp.</p>
+            <p class="account-muted">Verifiez vos informations avant validation. La commande sera créée d'abord, puis le paiement sera finalisé avec SenPrintTech sur WhatsApp.</p>
+            {% if not request.user.is_authenticated %}
+            <p class="account-muted">Pas besoin de compte pour commander. <a href="{% url 'accounts:login' %}?next={{ request.path }}">Déjà client ?</a> Connectez-vous pour retrouver vos commandes.</p>
+            {% endif %}
             <form method="post" class="auth-form">
                 {% csrf_token %}
                 <div class="checkout-form-section">
@@ -63,7 +66,7 @@
                     <div class="checkout-section-heading">
                         <div>
                             <h2>Paiement</h2>
-                            <p>Choisissez Wave ou Orange Money. Vous payez sur WhatsApp, apres creation de la commande.</p>
+                            <p>Choisissez Wave ou Orange Money. Vous payez sur WhatsApp, après creation de la commande.</p>
                         </div>
                     </div>
                 <fieldset class="payment-method-field">
