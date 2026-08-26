@@ -102,10 +102,15 @@ class Command(BaseCommand):
                     "name": item["name"],
                     "description": item["description"],
                     "price": item["price"],
-                    "image": item["image"],
                     "available": True,
                 },
             )
+            # Only set the seed image on first creation: on later runs the
+            # image may already point at an uploaded storage asset (e.g.
+            # Cloudinary), and resetting it here would break that reference.
+            if created and not product.image:
+                product.image = item["image"]
+                product.save(update_fields=["image"])
             if created:
                 created_count += 1
             else:

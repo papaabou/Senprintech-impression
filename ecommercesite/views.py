@@ -1,9 +1,13 @@
 from pathlib import Path
 
 from django.conf import settings
-from django.http import Http404
+from django.contrib.admin.views.decorators import staff_member_required
+from django.core.files.base import File
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views.static import serve
+
+from products.models import Product
 
 
 LEGAL_PAGES = {
@@ -35,3 +39,23 @@ def media_file(request, path):
             return serve(request, path, document_root=bundled_media_root)
 
     raise Http404("Media file not found")
+
+
+@staff_member_required
+def resync_product_images(request):
+    """One-off: push the repo-bundled seed images into CLOUDINARY_URL storage.
+
+    seed_senprintech only sets the image field's string path on new
+    products; if that path was never actually uploaded (e.g. after a
+    manual DB fix reset it back to the local path), re-upload it here.
+    """
+    lines = []
+    for product in Product.objects.exclude(image=""):
+        local_path = settings.BASE_DIR / "mediafiles" / product.image.name
+        if not local_path.exists():
+            lines.append(f"SKIP (no local file): {product.name} -> {product.image.name}")
+            continue
+        with open(local_path, "rb") as f:
+            product.image.save(local_path.name, File(f), save=True)
+        lines.append(f"UPLOADED: {product.name} -> {product.image.name}")
+    return HttpResponse("\n".join(lines) or "No products with images found.", content_type="text/plain")
