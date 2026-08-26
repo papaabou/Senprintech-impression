@@ -7,7 +7,7 @@ Telephone : {{ quote.phone }}
 
 Produit : {{ quote.product_type }}
 Quantite souhaitee : {{ quote.desired_quantity }}
-Delai souhaite : {{ quote.desired_deadline }}
+Délai souhaite : {{ quote.desired_deadline }}
 {% if quote.estimated_budget %}Budget estime : {{ quote.estimated_budget }} FCFA{% else %}Budget estime : Non indique{% endif %}
 
 Message :

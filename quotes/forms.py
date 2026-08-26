@@ -25,7 +25,7 @@ class QuoteRequestForm(forms.ModelForm):
             "phone": "Telephone",
             "product_type": "Type de produit",
             "desired_quantity": "Quantite souhaitee",
-            "desired_deadline": "Delai souhaite",
+            "desired_deadline": "Délai souhaite",
             "estimated_budget": "Budget estime optionnel",
             "message": "Message",
             "uploaded_file": "Joindre un fichier (facultatif)",

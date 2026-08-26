@@ -39,7 +39,7 @@ class ContactForm(forms.Form):
         label="Message",
         widget=forms.Textarea(
             attrs={
-                "placeholder": "Expliquez votre besoin, quantite, delai souhaite...",
+                "placeholder": "Expliquez votre besoin, quantite, délai souhaite...",
                 "rows": 5,
             }
         ),

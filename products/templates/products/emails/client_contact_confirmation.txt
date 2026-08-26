@@ -1,6 +1,6 @@
 Bonjour {{ contact.name }},
 
-Votre message a bien ete recu par SenPrintTech.
+Votre message a bien ete reçu par SenPrintTech.
 
 Resume :
 Type de projet : {{ project_type_label }}

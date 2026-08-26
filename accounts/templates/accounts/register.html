@@ -16,7 +16,7 @@
         </div>
         <div class="account-card auth-card auth-card-wide">
             <p class="eyebrow">Inscription</p>
-            <h1>Creer votre compte</h1>
+            <h1>Créer votre compte</h1>
             <p class="account-muted">Suivez vos commandes, retrouvez vos fichiers et gagnez du temps lors des prochaines impressions.</p>
             <form method="post" class="auth-form">
                 {% csrf_token %}
@@ -54,8 +54,8 @@
                     {{ form.password2 }}
                     {% for error in form.password2.errors %}<small>{{ error }}</small>{% endfor %}
                 </label>
-                <p class="password-note">Utilisez au moins 6 caracteres.</p>
-                <button class="button button-primary" type="submit">Creer mon compte</button>
+                <p class="password-note">Utilisez au moins 6 caractères.</p>
+                <button class="button button-primary" type="submit">Créer mon compte</button>
             </form>
             <p class="account-switch">Déjà inscrit ? <a href="{% url 'accounts:login' %}">Se connecter</a></p>
         </div>

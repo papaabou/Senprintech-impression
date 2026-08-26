@@ -21,7 +21,7 @@
             </div>
             <div class="account-card account-metric">
                 <span>Suivi</span>
-                <h3>Commandes recentes</h3>
+                <h3>Commandes récentes</h3>
                 {% for order in recent_orders %}
                 <a class="order-row" href="{% url 'accounts:order_detail' order.id %}">
                     <span>Commande {{ order.order_number }}</span>
@@ -34,7 +34,7 @@
             </div>
             <div class="account-card account-metric">
                 <span>Entreprise</span>
-                <h3>Devis recents</h3>
+                <h3>Devis récents</h3>
                 {% for quote in recent_quotes %}
                 <a class="order-row" href="{% url 'accounts:quote_detail' quote.id %}">
                     <span>Devis #{{ quote.id }}</span>

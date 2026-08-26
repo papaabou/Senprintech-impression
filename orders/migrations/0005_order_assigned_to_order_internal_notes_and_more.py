@@ -62,7 +62,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='order',
             name='status',
-            field=models.CharField(choices=[('pending', 'En attente'), ('file_received', 'Fichier recu'), ('reviewing', 'Verification fichier'), ('client_validation', 'Validation client'), ('printing', 'Impression'), ('finishing', 'Finition'), ('packaging', 'Emballage'), ('shipped', 'Expedie'), ('delivered', 'Livre'), ('cancelled', 'Annule')], default='pending', max_length=30),
+            field=models.CharField(choices=[('pending', 'En attente'), ('file_received', 'Fichier reçu'), ('reviewing', 'Verification fichier'), ('client_validation', 'Validation client'), ('printing', 'Impression'), ('finishing', 'Finition'), ('packaging', 'Emballage'), ('shipped', 'Expedie'), ('delivered', 'Livre'), ('cancelled', 'Annule')], default='pending', max_length=30),
         ),
         migrations.CreateModel(
             name='OrderStatusHistory',

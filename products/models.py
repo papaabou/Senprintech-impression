@@ -19,7 +19,7 @@ class Category(models.Model):
     slug = models.SlugField(unique=True)
     
     class Meta:
-        verbose_name_plural = "categories"
+        verbose_name_plural = "catégories"
     
     def __str__(self):
         return self.name

@@ -8,7 +8,7 @@
             <div>
                 <p class="eyebrow">Devis #{{ quote.id }}</p>
                 <h1>{{ quote.get_status_display }}</h1>
-                <p>{{ quote.company_name }} - {{ quote.product_type }} - cree le {{ quote.created_at|date:"d/m/Y H:i" }}</p>
+                <p>{{ quote.company_name }} - {{ quote.product_type }} - créé le {{ quote.created_at|date:"d/m/Y H:i" }}</p>
             </div>
             <a href="{% url 'accounts:quote_list' %}" class="button button-secondary-dark">Retour aux devis</a>
         </div>
@@ -23,7 +23,7 @@
                 <h3>Projet</h3>
                 <p class="account-muted">Produit : {{ quote.product_type }}</p>
                 <p class="account-muted">Quantite : {{ quote.desired_quantity }}</p>
-                <p class="account-muted">Delai : {{ quote.desired_deadline }}</p>
+                <p class="account-muted">Délai : {{ quote.desired_deadline }}</p>
                 {% if quote.estimated_budget %}<p class="account-muted">Budget : {{ quote.estimated_budget }} FCFA</p>{% endif %}
                 {% if quote.uploaded_file %}<p class="cart-upload"><strong>Fichier:</strong> <a href="{{ quote.uploaded_file.url }}" target="_blank" rel="noopener">{{ quote.uploaded_file.name }}</a></p>{% endif %}
             </div>

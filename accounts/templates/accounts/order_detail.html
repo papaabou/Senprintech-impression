@@ -8,7 +8,7 @@
         <div>
             <p class="eyebrow">Commande {{ order.order_number }}</p>
             <h1>{{ order.get_status_display }}</h1>
-            <p>Commande creee le {{ order.created_at|date:"d/m/Y H:i" }}.</p>
+            <p>Commande créée le {{ order.created_at|date:"d/m/Y H:i" }}.</p>
         </div>
         <a href="{% url 'accounts:order_list' %}" class="button button-secondary-dark">Retour aux commandes</a>
     </div>
@@ -19,7 +19,7 @@
             <strong>{{ order.get_payment_status_display }}</strong>
         </div>
         <div>
-            <span>Methode choisie</span>
+            <span>Méthode choisie</span>
             <strong>{{ order.get_payment_method_display }}</strong>
         </div>
         <div>
@@ -70,10 +70,10 @@
                 <p><span>Adresse</span><strong>{{ order.address }}</strong></p>
                 <p><span>Ville</span><strong>{{ order.city|default:"-" }}</strong></p>
                 <p><span>Livraison</span><strong>{{ order.get_delivery_method_display }}</strong></p>
-                <p><span>Methode paiement</span><strong>{{ order.get_payment_method_display }}</strong></p>
+                <p><span>Méthode paiement</span><strong>{{ order.get_payment_method_display }}</strong></p>
                 <p><span>Statut paiement</span><strong>{{ order.get_payment_status_display }}</strong></p>
                 {% if order.proof_file %}
-                <p><span>BAT / apercu</span><strong><a href="{{ order.proof_file.url }}" target="_blank" rel="noopener">Voir le fichier</a></strong></p>
+                <p><span>BAT / aperçu</span><strong><a href="{{ order.proof_file.url }}" target="_blank" rel="noopener">Voir le fichier</a></strong></p>
                 {% endif %}
             </div>
             {% if order.notes %}

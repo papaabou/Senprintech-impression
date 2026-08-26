@@ -7,7 +7,7 @@ Telephone : {{ order.phone|default:"-" }}
 Adresse : {{ order.address }}
 Ville : {{ order.city|default:"-" }}
 Livraison : {{ order.get_delivery_method_display }}
-Methode de paiement : {{ order.get_payment_method_display }}
+Méthode de paiement : {{ order.get_payment_method_display }}
 Statut paiement : {{ order.get_payment_status_display }}
 
 Articles :

@@ -20,7 +20,7 @@ class Order(models.Model):
     PACKAGING = "packaging"
     STATUS_CHOICES = [
         (PENDING, "En attente"),
-        (FILE_RECEIVED, "Fichier recu"),
+        (FILE_RECEIVED, "Fichier reçu"),
         (REVIEWING, "Verification fichier"),
         (CLIENT_VALIDATION, "Validation client"),
         (PRINTING, "Impression"),

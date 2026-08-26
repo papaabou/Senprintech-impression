@@ -29,7 +29,7 @@ class OrderCreateForm(forms.ModelForm):
             "address": "Adresse",
             "city": "Ville",
             "delivery_method": "Mode de livraison",
-            "payment_method": "Methode de paiement",
+            "payment_method": "Méthode de paiement",
             "notes": "Notes commande",
         }
         widgets = {
@@ -42,7 +42,7 @@ class OrderCreateForm(forms.ModelForm):
             "notes": forms.Textarea(
                 attrs={
                     "rows": 4,
-                    "placeholder": "Delai souhaite, details livraison, precision sur les fichiers...",
+                    "placeholder": "Délai souhaite, details livraison, precision sur les fichiers...",
                 }
             ),
         }

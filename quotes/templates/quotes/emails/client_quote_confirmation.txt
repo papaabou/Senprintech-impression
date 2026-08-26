@@ -1,14 +1,14 @@
 Bonjour {{ quote.contact_name }},
 
-Votre demande de devis SenPrintTech a bien ete recue.
+Votre demande de devis SenPrintTech a bien ete reçue.
 
 Resume de votre demande :
 Entreprise : {{ quote.company_name }}
 Produit : {{ quote.product_type }}
 Quantite souhaitee : {{ quote.desired_quantity }}
-Delai souhaite : {{ quote.desired_deadline }}
+Délai souhaite : {{ quote.desired_deadline }}
 {% if quote.estimated_budget %}Budget estime : {{ quote.estimated_budget }} FCFA{% else %}Budget estime : Non indique{% endif %}
-{% if file_url %}Fichier joint : Bien recu{% else %}Fichier joint : Aucun fichier fourni{% endif %}
+{% if file_url %}Fichier joint : Bien reçu{% else %}Fichier joint : Aucun fichier fourni{% endif %}
 
 Notre equipe revient vers vous rapidement avec les prochaines etapes.
 

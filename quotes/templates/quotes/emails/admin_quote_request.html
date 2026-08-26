@@ -16,7 +16,7 @@
       <h2 style="margin:24px 0 14px;font-size:18px;">Projet</h2>
       <p><strong>Produit :</strong> {{ quote.product_type }}</p>
       <p><strong>Quantite :</strong> {{ quote.desired_quantity }}</p>
-      <p><strong>Delai :</strong> {{ quote.desired_deadline }}</p>
+      <p><strong>Délai :</strong> {{ quote.desired_deadline }}</p>
       <p><strong>Budget :</strong> {% if quote.estimated_budget %}{{ quote.estimated_budget }} FCFA{% else %}Non indique{% endif %}</p>
       <p><strong>Fichier :</strong> {% if file_url %}<a href="{{ file_url }}" style="color:#9f7625;">Ouvrir le fichier</a>{% else %}Aucun fichier fourni{% endif %}</p>
 

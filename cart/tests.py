@@ -32,7 +32,7 @@ class CartFlowTests(TestCase):
         )
         self.text_option = ProductOption.objects.create(
             product=self.product,
-            name="Texte personnalise",
+            name="Texte personnalisé",
             code="texte",
             input_type=ProductOption.TEXT,
             required=True,

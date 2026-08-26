@@ -13,11 +13,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='orderstatushistory',
             name='new_status',
-            field=models.CharField(choices=[('pending', 'En attente'), ('file_received', 'Fichier recu'), ('reviewing', 'Verification fichier'), ('client_validation', 'Validation client'), ('printing', 'Impression'), ('finishing', 'Finition'), ('packaging', 'Emballage'), ('shipped', 'Expedie'), ('delivered', 'Livre'), ('cancelled', 'Annule')], max_length=30),
+            field=models.CharField(choices=[('pending', 'En attente'), ('file_received', 'Fichier reçu'), ('reviewing', 'Verification fichier'), ('client_validation', 'Validation client'), ('printing', 'Impression'), ('finishing', 'Finition'), ('packaging', 'Emballage'), ('shipped', 'Expedie'), ('delivered', 'Livre'), ('cancelled', 'Annule')], max_length=30),
         ),
         migrations.AlterField(
             model_name='orderstatushistory',
             name='previous_status',
-            field=models.CharField(blank=True, choices=[('pending', 'En attente'), ('file_received', 'Fichier recu'), ('reviewing', 'Verification fichier'), ('client_validation', 'Validation client'), ('printing', 'Impression'), ('finishing', 'Finition'), ('packaging', 'Emballage'), ('shipped', 'Expedie'), ('delivered', 'Livre'), ('cancelled', 'Annule')], max_length=30),
+            field=models.CharField(blank=True, choices=[('pending', 'En attente'), ('file_received', 'Fichier reçu'), ('reviewing', 'Verification fichier'), ('client_validation', 'Validation client'), ('printing', 'Impression'), ('finishing', 'Finition'), ('packaging', 'Emballage'), ('shipped', 'Expedie'), ('delivered', 'Livre'), ('cancelled', 'Annule')], max_length=30),
         ),
     ]

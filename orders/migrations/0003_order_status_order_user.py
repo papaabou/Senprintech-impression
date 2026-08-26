@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='order',
             name='status',
-            field=models.CharField(choices=[('pending', 'En attente'), ('file_received', 'Fichier recu'), ('reviewing', 'En verification'), ('production', 'En production'), ('ready', 'Pret'), ('shipped', 'Expedie'), ('delivered', 'Livre'), ('cancelled', 'Annule')], default='pending', max_length=30),
+            field=models.CharField(choices=[('pending', 'En attente'), ('file_received', 'Fichier reçu'), ('reviewing', 'En verification'), ('production', 'En production'), ('ready', 'Pret'), ('shipped', 'Expedie'), ('delivered', 'Livre'), ('cancelled', 'Annule')], default='pending', max_length=30),
         ),
         migrations.AddField(
             model_name='order',
