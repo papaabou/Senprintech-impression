@@ -8,6 +8,12 @@ from .models import ProductOptionChoice
 
 
 class ContactForm(forms.Form):
+    # Honeypot: invisible to real visitors (hidden via CSS), bots fill it in.
+    website = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={"autocomplete": "off", "tabindex": "-1"}),
+        label="",
+    )
     name = forms.CharField(
         label="Nom complet",
         max_length=120,
@@ -44,6 +50,12 @@ class ContactForm(forms.Form):
             }
         ),
     )
+
+    def clean_website(self):
+        value = self.cleaned_data.get("website")
+        if value:
+            raise forms.ValidationError("Erreur de validation.")
+        return value
 
 
 class ProductConfigurationForm(forms.Form):

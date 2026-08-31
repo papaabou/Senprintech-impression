@@ -124,7 +124,8 @@ def contact_submit(request):
 
     form = ContactForm(request.POST)
     if form.is_valid():
-        contact_request = ContactRequest.objects.create(**form.cleaned_data)
+        data = {k: v for k, v in form.cleaned_data.items() if k != "website"}
+        contact_request = ContactRequest.objects.create(**data)
         try:
             send_contact_emails(form)
             contact_request.email_sent = True

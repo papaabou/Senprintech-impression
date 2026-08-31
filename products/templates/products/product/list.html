@@ -164,6 +164,9 @@
 
         <form action="{% url 'products:contact_submit' %}" method="post" class="contact-form" novalidate>
             {% csrf_token %}
+            <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+                {{ contact_form.website }}
+            </div>
             <div class="form-grid">
                 <label>
                     <span>{{ contact_form.name.label }}</span>
