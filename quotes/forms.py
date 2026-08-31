@@ -4,6 +4,14 @@ from .models import QuoteRequest
 
 
 class QuoteRequestForm(forms.ModelForm):
+    # Honeypot: invisible to real visitors (hidden via CSS), bots fill it in.
+    # Not in Meta.fields, so ModelForm.save() never touches the model with it.
+    website = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={"autocomplete": "off", "tabindex": "-1"}),
+        label="",
+    )
+
     class Meta:
         model = QuoteRequest
         fields = [
@@ -56,5 +64,12 @@ class QuoteRequestForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["uploaded_file"].required = False
-        for field in self.fields.values():
-            field.widget.attrs["class"] = "auth-input"
+        for name, field in self.fields.items():
+            if name != "website":
+                field.widget.attrs["class"] = "auth-input"
+
+    def clean_website(self):
+        value = self.cleaned_data.get("website")
+        if value:
+            raise forms.ValidationError("Erreur de validation.")
+        return value

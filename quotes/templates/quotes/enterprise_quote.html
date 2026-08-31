@@ -35,6 +35,9 @@
     <div class="section-inner account-layout">
         <form method="post" enctype="multipart/form-data" class="account-card auth-form quote-form-card">
             {% csrf_token %}
+            <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+                {{ form.website }}
+            </div>
             <p class="eyebrow">Demande de devis</p>
             <h2>Parlez-nous du projet</h2>
             <div class="auth-grid">
