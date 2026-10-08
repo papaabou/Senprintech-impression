@@ -7,57 +7,6 @@ from ecommercesite.validators import validate_upload_file
 from .models import ProductOptionChoice
 
 
-class ContactForm(forms.Form):
-    # Honeypot: invisible to real visitors (hidden via CSS), bots fill it in.
-    website = forms.CharField(
-        required=False,
-        widget=forms.TextInput(attrs={"autocomplete": "off", "tabindex": "-1"}),
-        label="",
-    )
-    name = forms.CharField(
-        label="Nom complet",
-        max_length=120,
-        widget=forms.TextInput(attrs={"placeholder": "Votre nom"}),
-    )
-    email = forms.EmailField(
-        label="Email",
-        widget=forms.EmailInput(attrs={"placeholder": "votre@email.com"}),
-    )
-    phone = forms.CharField(
-        label="Telephone",
-        max_length=40,
-        required=False,
-        widget=forms.TextInput(attrs={"placeholder": "+221 ..."}),
-    )
-    project_type = forms.ChoiceField(
-        label="Type de projet",
-        choices=[
-            ("flyers", "Flyers"),
-            ("business_cards", "Cartes de visite"),
-            ("tshirts", "T-shirts"),
-            ("mugs", "Mugs"),
-            ("stickers", "Stickers"),
-            ("business", "Impression entreprise"),
-            ("other", "Autre demande"),
-        ],
-    )
-    message = forms.CharField(
-        label="Message",
-        widget=forms.Textarea(
-            attrs={
-                "placeholder": "Expliquez votre besoin, quantite, délai souhaite...",
-                "rows": 5,
-            }
-        ),
-    )
-
-    def clean_website(self):
-        value = self.cleaned_data.get("website")
-        if value:
-            raise forms.ValidationError("Erreur de validation.")
-        return value
-
-
 class ProductConfigurationForm(forms.Form):
     def __init__(self, *args, product, **kwargs):
         super().__init__(*args, **kwargs)

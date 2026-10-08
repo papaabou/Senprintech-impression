@@ -1,9 +1,0 @@
-Nouveau message depuis le formulaire contact SenPrintTech
-
-Nom : {{ contact.name }}
-Email : {{ contact.email }}
-{% if contact.phone %}Telephone : {{ contact.phone }}{% else %}Telephone : Non indique{% endif %}
-Type de projet : {{ project_type_label }}
-
-Message :
-{{ contact.message }}

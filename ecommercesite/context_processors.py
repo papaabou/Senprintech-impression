@@ -17,15 +17,11 @@ def static_version(request):
 
 def whatsapp(request):
     message = settings.WHATSAPP_GENERAL_MESSAGE
-    subject = settings.CONTACT_EMAIL_SUBJECT
-    body = settings.CONTACT_EMAIL_BODY
     return {
         "WHATSAPP_NUMBER": settings.WHATSAPP_NUMBER,
         "WHATSAPP_DISPLAY_NUMBER": settings.WHATSAPP_DISPLAY_NUMBER,
         "WHATSAPP_GENERAL_MESSAGE": message,
         "WHATSAPP_GENERAL_URL": f"https://wa.me/{settings.WHATSAPP_NUMBER}?text={quote(message)}",
-        "CONTACT_EMAIL": settings.CONTACT_EMAIL,
-        "CONTACT_EMAIL_URL": f"mailto:{settings.CONTACT_EMAIL}?subject={quote(subject)}&body={quote(body)}",
         "CONTACT_PHONE_DISPLAY": settings.CONTACT_PHONE_DISPLAY,
         "CONTACT_PHONE_SECONDARY_DISPLAY": settings.CONTACT_PHONE_SECONDARY_DISPLAY,
         "CONTACT_ADDRESS": settings.CONTACT_ADDRESS,

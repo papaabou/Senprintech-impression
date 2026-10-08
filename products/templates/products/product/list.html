@@ -148,9 +148,8 @@
         <div class="contact-copy">
             <p class="eyebrow">Contact</p>
             <h2>Parlez-nous de votre projet d'impression.</h2>
-            <p>Besoin de flyers, textiles, cartes, mugs, stickers ou supports entreprise ? Envoyez votre demande et nous vous recontactons avec les prochaines etapes.</p>
+            <p>Besoin de flyers, textiles, cartes, mugs, stickers ou supports entreprise ? Contactez-nous directement sur WhatsApp pour une reponse rapide.</p>
             <div class="contact-direct">
-                <a href="{{ CONTACT_EMAIL_URL }}">{{ CONTACT_EMAIL }}</a>
                 <a href="tel:+{{ WHATSAPP_NUMBER }}">{{ CONTACT_PHONE_DISPLAY }}</a>
                 <a href="{{ WHATSAPP_GENERAL_URL }}" target="_blank" rel="noopener" class="whatsapp-inline-link">
                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -161,46 +160,6 @@
                 </a>
             </div>
         </div>
-
-        <form action="{% url 'products:contact_submit' %}" method="post" class="contact-form" novalidate>
-            {% csrf_token %}
-            <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
-                {{ contact_form.website }}
-            </div>
-            <div class="form-grid">
-                <label>
-                    <span>{{ contact_form.name.label }}</span>
-                    {{ contact_form.name }}
-                    {% for error in contact_form.name.errors %}<small>{{ error }}</small>{% endfor %}
-                </label>
-                <label>
-                    <span>{{ contact_form.email.label }}</span>
-                    {{ contact_form.email }}
-                    {% for error in contact_form.email.errors %}<small>{{ error }}</small>{% endfor %}
-                </label>
-            </div>
-
-            <div class="form-grid">
-                <label>
-                    <span>{{ contact_form.phone.label }}</span>
-                    {{ contact_form.phone }}
-                    {% for error in contact_form.phone.errors %}<small>{{ error }}</small>{% endfor %}
-                </label>
-                <label>
-                    <span>{{ contact_form.project_type.label }}</span>
-                    {{ contact_form.project_type }}
-                    {% for error in contact_form.project_type.errors %}<small>{{ error }}</small>{% endfor %}
-                </label>
-            </div>
-
-            <label>
-                <span>{{ contact_form.message.label }}</span>
-                {{ contact_form.message }}
-                {% for error in contact_form.message.errors %}<small>{{ error }}</small>{% endfor %}
-            </label>
-
-            <button type="submit" class="button button-primary">Envoyer la demande</button>
-        </form>
     </div>
 </section>
 

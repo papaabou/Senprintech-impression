@@ -1,14 +1,11 @@
 from decimal import Decimal
-from unittest.mock import patch
 
 from django.core.management import call_command
-from django.test import TestCase, override_settings
-from django.urls import reverse
+from django.test import TestCase
 
 from cart.models import CartItem
 from products.forms import ProductConfigurationForm
 from products.models import Product
-from quotes.models import ContactRequest
 
 
 class ProductPricingTests(TestCase):
@@ -57,37 +54,3 @@ class ProductPricingTests(TestCase):
 
         self.assertEqual(item.get_unit_price(), product.get_base_price())
         self.assertEqual(item.get_total_price(), product.get_base_price() * 3)
-
-
-class ContactRequestTests(TestCase):
-    def contact_payload(self):
-        return {
-            "name": "Lamine",
-            "email": "lamine@example.com",
-            "phone": "777777777",
-            "project_type": "flyers",
-            "message": "Je veux vos produits",
-        }
-
-    @override_settings(SECURE_SSL_REDIRECT=False)
-    @patch("products.views.send_contact_emails")
-    def test_contact_request_is_saved_when_email_succeeds(self, send_contact_emails):
-        response = self.client.post(reverse("products:contact_submit"), self.contact_payload())
-
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(response["Location"], f"{reverse('products:product_list')}#contact")
-        contact_request = ContactRequest.objects.get()
-        self.assertEqual(contact_request.email, "lamine@example.com")
-        self.assertTrue(contact_request.email_sent)
-        send_contact_emails.assert_called_once()
-
-    @override_settings(SECURE_SSL_REDIRECT=False)
-    @patch("products.views.send_contact_emails", side_effect=RuntimeError("smtp down"))
-    def test_contact_request_is_saved_when_email_fails(self, send_contact_emails):
-        response = self.client.post(reverse("products:contact_submit"), self.contact_payload())
-
-        self.assertEqual(response.status_code, 302)
-        contact_request = ContactRequest.objects.get()
-        self.assertFalse(contact_request.email_sent)
-        self.assertIn("smtp down", contact_request.email_error)
-        send_contact_emails.assert_called_once()
